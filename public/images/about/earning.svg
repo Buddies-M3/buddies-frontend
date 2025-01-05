@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="900" height="650" viewBox="0 0 900 650">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_5" data-name="Rectangle 5" width="676" height="237" rx="5" transform="translate(253 523)" fill="#fff"/>
+    </clipPath>
+    <filter id="BG" x="106" y="129" width="348" height="151" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.039"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#55d8fe"/>
+      <stop offset="1" stop-color="#54d8ff" stop-opacity="0.502"/>
+    </linearGradient>
+    <filter id="BG-2" x="452" y="129" width="348" height="151" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-2"/>
+      <feFlood flood-opacity="0.039"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <linearGradient id="linear-gradient-2" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#5ee2a0"/>
+      <stop offset="1" stop-color="#5ee2a0" stop-opacity="0.502"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#a7a7ff"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <g id="Group_7" data-name="Group 7" transform="translate(-138 -224)">
+    <g id="Group_6" data-name="Group 6">
+      <path id="Path_1" data-name="Path 1" d="M0,0H900V650H0Z" transform="translate(138 224)" fill="#eceff7"/>
+      <g id="Group_1" data-name="Group 1">
+        <rect id="Rectangle_2" data-name="Rectangle 2" width="870" height="620" rx="10" transform="translate(153 239)" fill="#fff"/>
+        <circle id="Ellipse_1" data-name="Ellipse 1" cx="7.5" cy="7.5" r="7.5" transform="translate(185 260)" fill="#de6628"/>
+        <circle id="Ellipse_2" data-name="Ellipse 2" cx="7.5" cy="7.5" r="7.5" transform="translate(208 260)" fill="#f8dc52"/>
+        <circle id="Ellipse_3" data-name="Ellipse 3" cx="7.5" cy="7.5" r="7.5" transform="translate(231 260)" fill="#97ef95"/>
+        <rect id="Rectangle_3" data-name="Rectangle 3" width="809" height="534" rx="10" transform="translate(185 293)" fill="#f6f8fe"/>
+      </g>
+    </g>
+    <rect id="Rectangle_5-2" data-name="Rectangle 5" width="676" height="237" rx="5" transform="translate(253 523)" fill="#fff"/>
+    <g id="Total_Views" data-name="Total Views" transform="translate(-957 197)">
+      <g transform="matrix(1, 0, 0, 1, 1095, 27)" filter="url(#BG)">
+        <rect id="BG-3" data-name="BG" width="330" height="133" transform="translate(115 136)" fill="#fff"/>
+      </g>
+      <path id="Bar_Chart" data-name="Bar Chart" d="M106,40V22h6V40Zm-9,0V10h8V40Zm-9,0V20h8V40Zm-9,0V27h8V40Zm-9,0V15h8V40Zm-9,0V5h8V40Zm-9,0V15h8V40Zm-9,0V20h8V40Zm-9,0V0h8V40Zm-9,0V10h8V40Zm-7,0V22h6V40ZM9,40V10h8V40ZM0,40V20H8V40Z" transform="translate(1408 236)" fill="url(#linear-gradient)"/>
+      <text id="_XX_K" data-name="$XX K" transform="translate(1230 253)" fill="#4d4f5c" font-size="25" font-family="SourceSansPro-Bold, Source Sans Pro" font-weight="700"><tspan x="0" y="0">$XX K</tspan></text>
+      <text id="In" transform="translate(1230 198)" fill="#43425d" font-size="15" font-family="SourceSansPro-Regular, Source Sans Pro" opacity="0.5"><tspan x="0" y="0">In</tspan></text>
+      <g id="Naked_Label" data-name="Naked Label" transform="translate(1230 261)">
+        <text id="_13.8_" data-name="13.8%" transform="translate(12 11)" fill="#3cc480" font-size="11" font-family="SourceSansPro-Bold, Source Sans Pro" font-weight="700"><tspan x="0" y="0">13.8%</tspan></text>
+        <path id="UpArrow" d="M5,6V1A.945.945,0,0,0,4,0H4A.945.945,0,0,0,3,1V6H0l4,4L8,6Z" transform="translate(8 12) rotate(180)" fill="#3cc480"/>
+      </g>
+    </g>
+    <g id="Total_Earnings" data-name="Total Earnings" transform="translate(-610.402 -109)">
+      <g transform="matrix(1, 0, 0, 1, 748.4, 333)" filter="url(#BG-2)">
+        <rect id="BG-4" data-name="BG" width="330" height="133" transform="translate(461 136)" fill="#fff"/>
+      </g>
+      <path id="Bar_Chart-2" data-name="Bar Chart" d="M106,40V22h6V40Zm-9,0V10h8V40Zm-9,0V20h8V40Zm-9,0V27h8V40Zm-9,0V15h8V40Zm-9,0V5h8V40Zm-9,0V15h8V40Zm-9,0V20h8V40Zm-9,0V0h8V40Zm-9,0V10h8V40Zm-7,0V22h6V40ZM9,40V10h8V40ZM0,40V20H8V40Z" transform="translate(1407.402 542)" fill="url(#linear-gradient-2)"/>
+      <g id="Naked_Label-2" data-name="Naked Label" transform="translate(1230 568)">
+        <text id="_13.8_2" data-name="13.8%" transform="translate(11.402 11)" fill="#ff4141" font-size="11" font-family="SourceSansPro-Bold, Source Sans Pro" font-weight="700"><tspan x="0" y="0">13.8%</tspan></text>
+        <path id="DownArrow" d="M9,9V4A.945.945,0,0,0,8,3H8A.945.945,0,0,0,7,4V9H4l4,4,4-4Z" transform="translate(-4 -1)" fill="#ff4141"/>
+      </g>
+      <text id="_XX_K-2" data-name="$XX K" transform="translate(1229.402 560)" fill="#4d4f5c" font-size="25" font-family="SourceSansPro-Bold, Source Sans Pro" font-weight="700"><tspan x="0" y="0">$XX K</tspan></text>
+      <text id="Out" transform="translate(1229.402 504)" fill="#43425d" font-size="15" font-family="SourceSansPro-Regular, Source Sans Pro" opacity="0.5"><tspan x="0" y="0">Out</tspan></text>
+    </g>
+    <g id="Products_Sold_Graph" data-name="Products Sold Graph" transform="translate(-72 210)">
+      <path id="Filled.Graph" d="M330,490.153V401.268s76.881,58.3,138.31,61.963c66.423-3.549,77.925-28.5,129.664-61.963,44.213-27.892,88.306-35.547,130.626-33.576s79,32.1,128.992,35.189c88.189-12.44,133.184-75.335,139.142-101.6V523.21l-666.735.1Z" transform="translate(0.002 34)" opacity="0.7" fill="url(#linear-gradient-3)"/>
+      <path id="Line.Graph" d="M313,346.5s76.34,59.691,136.7,60.976,83.545-30.8,129.777-60.9,90.183-35.23,130.646-34.218,79.8,32.548,129.517,34.221S969.79,292.07,978.734,245.24" transform="translate(18.002 89)" fill="none" stroke="#a3a0fb" stroke-width="2"/>
+      <g id="Jun.Ellipse" transform="translate(991.011 330)" fill="#fff" stroke="#a4a1fb" stroke-width="2">
+        <circle cx="4.995" cy="4.995" r="4.995" stroke="none"/>
+        <circle cx="4.995" cy="4.995" r="3.995" fill="none"/>
+      </g>
+      <g id="May.Ellipse" transform="translate(851.571 431)" fill="#fff" stroke="#a4a1fb" stroke-width="2">
+        <circle cx="4.995" cy="4.995" r="4.995" stroke="none"/>
+        <circle cx="4.995" cy="4.995" r="3.995" fill="none"/>
+      </g>
+      <g id="Apr.Ellipse" transform="translate(722.527 397)" fill="#fff" stroke="#a4a1fb" stroke-width="2">
+        <circle cx="4.995" cy="4.995" r="4.995" stroke="none"/>
+        <circle cx="4.995" cy="4.995" r="3.995" fill="none"/>
+      </g>
+      <g id="Mar.Ellipse" transform="translate(592.261 431)" fill="#fff" stroke="#a4a1fb" stroke-width="2">
+        <circle cx="4.995" cy="4.995" r="4.995" stroke="none"/>
+        <circle cx="4.995" cy="4.995" r="3.995" fill="none"/>
+      </g>
+      <g id="Feb.Ellipse" transform="translate(462.606 492)" fill="#fff" stroke="#a4a1fb" stroke-width="2">
+        <circle cx="4.995" cy="4.995" r="4.995" stroke="none"/>
+        <circle cx="4.995" cy="4.995" r="3.995" fill="none"/>
+      </g>
+      <g id="Jan.Ellipse" transform="translate(325 430)" fill="#fff" stroke="#a4a1fb" stroke-width="2">
+        <circle cx="4.995" cy="4.995" r="4.995" stroke="none"/>
+        <circle cx="4.995" cy="4.995" r="3.995" fill="none"/>
+      </g>
+    </g>
+  </g>
+</svg>
