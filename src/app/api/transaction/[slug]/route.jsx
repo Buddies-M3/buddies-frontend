@@ -23,7 +23,7 @@ export async function GET(req, { params }) {
   const endpoint = `http://188.166.205.153:8080/transactions/${transactionId}`;
 
   try {
-    const response = await fetch(endpoint);
+    const response = await fetch(endpoint, { cache: 'no-store' });
 
     if (!response.ok) {
       throw new Error(`Failed to fetch data: ${response.statusText}`);
@@ -62,29 +62,28 @@ export async function GET(req, { params }) {
         await fs.rm(tempDir, { recursive: true });
       } catch (imageError) {
         console.error('Image conversion failed:', imageError);
-        convertedFaceImage = data.dg2.faceimages[0].imagebase64;
+        convertedFaceImage = `data:image/jpeg;base64,${data.dg2.faceimages[0].imagebase64}`;
       }
     }
 
-    console.log("Heol", data.createdat)
 
     const mappedTransaction = {
-      id: transactionId,
-      time: data.createdat,
+      id: transactionId || "Unknown ID",
+      time: data.createdat || "Unknown Time",
       sourceIP: "203.0.113.1",
-      owner: data.dg11.fullname || "Unknown Owner",
+      owner: data.dg11?.fullname || "Unknown Owner",
       type: ["OCR", "NFC", "QR"][Math.floor(Math.random() * 3)],
-      status: ["Completed", "Failed", "Pending"][Math.floor(Math.random() * 3)],
-      fullName: data.dg11.fullname || "Unknown",
-      idNumber: data.dg1.documentnumber || "N/A",
-      nationality: data.dg1.nationality || "N/A",
-      address: data.dg12.additionaldetails || "Unknown Address",
-      birthdate: format((parse(data.dg1.dateofbirth, "yyMMdd", new Date())),"dd-MMM-yyyy") || "Unknown Birthdate",
-      occupation: data.dg11.profession || "Unknown Occupation",
-      idType: data.dg1.documentcode || "Unknown ID Type",
-      expiryDate: format((parse(data.dg1.dateofexpiry, "yyMMdd", new Date())),"dd-MMM-yyyy"),
-      issuanceDate: "Unknown Issuance Date",
-      faceImageBase64: convertedFaceImage,
+      status: ["Completed", "Failed"][Math.floor(Math.random() * 2)],
+      fullName: data.dg11?.fullname || "Unknown",
+      idNumber: data.dg1?.documentnumber || "N/A",
+      nationality: data.dg1?.nationality || "N/A",
+      address: data.dg12?.additionaldetails || "Unknown Address",
+      birthdate: data.dg1?.dateofbirth ? format((parse(data.dg1.dateofbirth, "yyMMdd", new Date())), "dd-MMM-yyyy") : "N/A",
+      occupation: data.dg11?.profession || "Unknown Occupation",
+      idType: data.dg1?.documentcode || "Unknown ID Type",
+      expiryDate: data.dg1?.dateofexpiry ? format((parse(data.dg1.dateofexpiry, "yyMMdd", new Date())), "dd-MMM-yyyy") : "N/A",
+      issuanceDate: "N/A",
+      faceImageBase64: convertedFaceImage || "N/A",
     };
 
     return new Response(JSON.stringify(mappedTransaction), {
@@ -92,6 +91,7 @@ export async function GET(req, { params }) {
       headers: { "Content-Type": "application/json" },
     });
   } catch (error) {
+    console.error("Error fetching data:", error);
     return new Response(
       JSON.stringify({ message: error.message }),
       {

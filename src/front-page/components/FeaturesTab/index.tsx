@@ -18,8 +18,8 @@ const FeaturesTab = () => {
           {/* <!-- Section Title Start --> */}
           <SectionHeader
             headerInfo={{
-              title: "FEATURES",
-              subtitle: "What is All About?",
+              title: "SERVICES",
+              subtitle: "What we offer?",
               description: ``,
             }}
           />

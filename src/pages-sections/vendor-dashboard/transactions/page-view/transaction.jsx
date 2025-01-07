@@ -7,6 +7,10 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { CardMedia, Button, Tab, Tabs } from "@mui/material";
+import NFCIcon from '@mui/icons-material/Nfc';
+import OCRIcon from '@mui/icons-material/TextFields';
+import FaceRecognitionIcon from '@mui/icons-material/Face';
+import VerificationIcon from '@mui/icons-material/Verified';
 import { StatusWrapper } from "pages-sections/vendor-dashboard/styles";
 import PassportView from "../passport-view";
 import DocumentView from "../document-view";
@@ -95,8 +99,8 @@ const PassportPageView = ({ transactionId }) => {
 
   const getImageSrc = (base64String) => {
     if (!base64String) return null;
-    return base64String.startsWith('data:') 
-      ? base64String 
+    return base64String.startsWith('data:')
+      ? base64String
       : `data:image/jpeg;base64,${base64String}`;
   };
 
@@ -118,8 +122,8 @@ const PassportPageView = ({ transactionId }) => {
 
   return (
     <Box sx={{ p: 3, maxWidth: 1200, margin: '0 auto' }}>
-      <Button 
-        variant="outlined" 
+      <Button
+        variant="outlined"
         sx={{ mb: 3 }}
         onClick={() => window.history.back()}
       >
@@ -173,15 +177,15 @@ const PassportPageView = ({ transactionId }) => {
       <Card>
         <CardContent>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-            <Tabs 
-              value={activeTab} 
+            <Tabs
+              value={activeTab}
               onChange={handleTabChange}
               variant="fullWidth"
             >
-              <Tab label="Passport Information" />
-              <Tab label="Document View" />
-              <Tab label="Face Recognition" />
-              <Tab label="Verification" />
+              <Tab icon={<NFCIcon />} label="NFC" />
+              <Tab icon={<OCRIcon />} label="OCR" />
+              <Tab icon={<FaceRecognitionIcon />} label="Face Recognition" />
+              <Tab icon={<VerificationIcon />} label="Verification" />
             </Tabs>
           </Box>
 
@@ -189,7 +193,7 @@ const PassportPageView = ({ transactionId }) => {
           <TabPanel value={activeTab} index={0}>
             <Grid container spacing={3}>
               <Grid item xs={12} sm={4}>
-                <Box sx={{ 
+                <Box sx={{
                   position: 'relative',
                   height: 300,
                   overflow: 'hidden',
@@ -209,7 +213,7 @@ const PassportPageView = ({ transactionId }) => {
                         width: '100%',
                         objectFit: "contain"
                       }}
-                      image={getImageSrc(passport.faceImageBase64)}
+                      image={passport.faceImageBase64}
                     />
                   ) : (
                     <Typography variant="body2" color="text.secondary">
@@ -228,7 +232,7 @@ const PassportPageView = ({ transactionId }) => {
           <TabPanel value={activeTab} index={1}>
             <Grid container spacing={3}>
               <Grid item xs={12} md={6}>
-                
+
                 <DocumentView document={passport} />
               </Grid>
               <Grid item xs={12} md={6}>
@@ -264,7 +268,7 @@ const PassportPageView = ({ transactionId }) => {
           {/* Tab 4: Verification */}
           <TabPanel value={activeTab} index={3}>
             {criminalRecord && (
-             <Verification criminalRecord={criminalRecord} />
+              <Verification criminalRecord={criminalRecord} />
             )}
           </TabPanel>
         </CardContent>

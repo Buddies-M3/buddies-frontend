@@ -70,7 +70,7 @@ const FaceMatchView = ({ faceRecognition, passport }) => {
                       height: 200,
                       objectFit: "contain",
                     }}
-                    image={passport.faceImageBase64}
+                    image={`${passport.faceImageBase64}`}
                   />
                 </Box>
               </Grid>
@@ -93,7 +93,7 @@ const FaceMatchView = ({ faceRecognition, passport }) => {
                       height: 200,
                       objectFit: "contain",
                     }}
-                    image={passport.faceImageBase64}
+                    image={`${passport.faceImageBase64}`}
                   />
                 </Box>
               </Grid>

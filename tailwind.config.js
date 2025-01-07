@@ -30,9 +30,9 @@ module.exports = {
         black: "#03061F",         // primary[900]
         blackho: "#2B3445",       // grey[900]
         blacksection: "#2B3445",  // grey[900]
-        primary: "#33D067",       // success.main
-        primaryho: "#52D77E",     // success[400]
-        meta: "#33D067",          // success[500]
+        primary: "#4ECCA3",       // success.main
+        primaryho: "#3BA37F",     // success[400]
+        meta: "#2E7D60",          // success[500]
         waterloo: "#7D879C",      // grey[600]
         manatee: "#AEB4BE",       // grey[500]
         alabaster: "#F6F9FC",     // grey[100]

@@ -4,7 +4,7 @@ export async function GET() {
   const endpoint = "http://188.166.205.153:8080/transactions";
 
   try {
-    const response = await fetch(endpoint);
+    const response = await fetch(endpoint, { cache: 'no-store' });
     if (!response.ok) {
       throw new Error(`Failed to fetch data: ${response.statusText}`);
     }
@@ -17,9 +17,9 @@ export async function GET() {
       time: item.createdat || "N/A",
       owner: item.dg11.fullname || "Unknown Owner",
       number: item.dg1.documentnumber || "Unknown",
-      expiry: format((parse(item.dg1.dateofexpiry, "yyMMdd", new Date())),"dd-MMM-yyyy"),
+      expiry: item.dg1.dateofexpiry ? format((parse(item.dg1.dateofexpiry, "ddMMyy", new Date())),"dd-MMM-yyyy") : "N/A",
       nationality: item.dg1.nationality || "Unknown",
-      status: ["Completed", "Failed", "Pending"][Math.floor(Math.random() * 3)],
+      status: ["Completed", "Failed"][Math.floor(Math.random() * 2)],
     }));
 
     return new Response(JSON.stringify(transactions), {
@@ -28,6 +28,7 @@ export async function GET() {
       },
     });
   } catch (error) {
+    console.error("Error fetching data:", error);
     return new Response(
       JSON.stringify({ error: error.message }),
       {

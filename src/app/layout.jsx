@@ -21,14 +21,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning={true}>
       <body className={openSans.className}>
-          <CartProvider>
-            <SettingsProvider>
+          
               <ThemeProvider>
                 {/* <ProgressBar /> */}
                 <RTL>{children}</RTL>
               </ThemeProvider>
-            </SettingsProvider>
-          </CartProvider>
+  
       </body>
     </html>
   );
