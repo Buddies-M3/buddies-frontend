@@ -66,6 +66,8 @@ export async function GET(req, { params }) {
       }
     }
 
+    console.log(data)
+
 
     const mappedTransaction = {
       id: transactionId || "Unknown ID",
@@ -73,16 +75,20 @@ export async function GET(req, { params }) {
       sourceIP: "203.0.113.1",
       owner: data.dg11?.fullname || "Unknown Owner",
       type: ["OCR", "NFC", "QR"][Math.floor(Math.random() * 3)],
-      status: ["Completed", "Failed"][Math.floor(Math.random() * 2)],
+      status: "Completed"/* ["Completed", "Failed"][Math.floor(Math.random() * 2)] */,
       fullName: data.dg11?.fullname || "Unknown",
       idNumber: data.dg1?.documentnumber || "N/A",
       nationality: data.dg1?.nationality || "N/A",
-      address: data.dg12?.additionaldetails || "Unknown Address",
+      gender: data.dg1?.gender || "N/A",
+      address: data.dg11?.permanentaddress[0] || "Unknown Address",
       birthdate: data.dg1?.dateofbirth ? format((parse(data.dg1.dateofbirth, "yyMMdd", new Date())), "dd-MMM-yyyy") : "N/A",
+      birthplace: data.dg11?.placeofbirth[0] || "N/A",
       occupation: data.dg11?.profession || "Unknown Occupation",
       idType: data.dg1?.documentcode || "Unknown ID Type",
       expiryDate: data.dg1?.dateofexpiry ? format((parse(data.dg1.dateofexpiry, "yyMMdd", new Date())), "dd-MMM-yyyy") : "N/A",
-      issuanceDate: "N/A",
+      issuanceState: data.dg1?.issuingstate || "N/A",
+      issuanceDate: data.dg12?.dateofissue ? format((parse(data.dg12.dateofissue, "yyyyMMdd", new Date())), "dd-MMM-yyyy") : "N/A",
+      issuingAuthority: data.dg12?.issuingauthority || "N/A",
       faceImageBase64: convertedFaceImage || "N/A",
     };
 

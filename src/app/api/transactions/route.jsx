@@ -19,7 +19,7 @@ export async function GET() {
       number: item.dg1.documentnumber || "Unknown",
       expiry: item.dg1.dateofexpiry ? format((parse(item.dg1.dateofexpiry, "ddMMyy", new Date())),"dd-MMM-yyyy") : "N/A",
       nationality: item.dg1.nationality || "Unknown",
-      status: ["Completed", "Failed"][Math.floor(Math.random() * 2)],
+      status: "Completed"/* ["Completed", "Failed"][Math.floor(Math.random() * 2)] */,
     }));
 
     return new Response(JSON.stringify(transactions), {

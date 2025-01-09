@@ -55,6 +55,8 @@ const PassportPageView = ({ transactionId }) => {
         const passportData = await passportResponse.json();
         setPassport(passportData);
 
+        console.log(passportData);
+
         // Fetch ID image
         const imageResponse = await fetch(`/api/id-image/${transactionId}`);
         if (!imageResponse.ok) throw new Error("Failed to fetch passport image");
@@ -136,8 +138,8 @@ const PassportPageView = ({ transactionId }) => {
           <Typography variant="h5" gutterBottom>
             Transaction Details
           </Typography>
-          <Grid container spacing={3}>
-            <Grid item xs={12} sm={3}>
+          <Grid container spacing={3} sx={{ display: 'flex', justifyContent: 'space-between' }}>
+            <Grid item xs={12} sm={4}>
               <Typography variant="subtitle2" color="text.secondary">
                 Transaction ID
               </Typography>
@@ -145,7 +147,7 @@ const PassportPageView = ({ transactionId }) => {
                 {passport.id}
               </Typography>
             </Grid>
-            <Grid item xs={12} sm={3}>
+            <Grid item xs={12} sm={4}>
               <Typography variant="subtitle2" color="text.secondary">
                 Time
               </Typography>
@@ -153,15 +155,7 @@ const PassportPageView = ({ transactionId }) => {
                 {passport.time}
               </Typography>
             </Grid>
-            <Grid item xs={12} sm={3}>
-              <Typography variant="subtitle2" color="text.secondary">
-                Type
-              </Typography>
-              <Typography variant="body1">
-                {passport.type}
-              </Typography>
-            </Grid>
-            <Grid item xs={12} sm={3}>
+            <Grid item xs={12} sm={4}>
               <Typography variant="subtitle2" color="text.secondary">
                 Status
               </Typography>
