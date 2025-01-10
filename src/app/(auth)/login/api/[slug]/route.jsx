@@ -14,8 +14,6 @@ export async function POST(request, { params }) {
     const slug = params.slug;
     const auth = getAuth(firebaseApp);
 
-    console.log("slug: ", slug);
-
     switch (slug) {
         case "login": {
             const email = formData.get('email');
