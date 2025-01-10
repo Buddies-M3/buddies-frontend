@@ -35,6 +35,9 @@ export async function GET(req, { params }) {
     let convertedFaceImage = null;
     if (data.dg2?.faceimages?.[0]?.imagebase64) {
       try {
+        // Check if opj_compress exists
+        await execFileAsync('which', ['opj_compress']);
+
         // Create temporary files
         const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), 'jp2-conversion-'));
         const inputPath = path.join(tempDir, 'input.jp2');
@@ -60,8 +63,8 @@ export async function GET(req, { params }) {
 
         // Clean up temp files
         await fs.rm(tempDir, { recursive: true });
-      } catch (imageError) {
-        console.error('Image conversion failed:', imageError);
+      } catch (error) {
+        console.error('Image conversion or opj_compress check failed:', error);
         convertedFaceImage = `data:image/jpeg;base64,${data.dg2.faceimages[0].imagebase64}`;
       }
     }
