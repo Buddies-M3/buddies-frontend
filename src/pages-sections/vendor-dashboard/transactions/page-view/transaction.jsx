@@ -16,6 +16,7 @@ import PassportView from "../passport-view";
 import DocumentView from "../document-view";
 import FaceMatchView from "../face-match-view";
 import Verification from "../Verification";
+import format from "date-fns/format";
 
 // Custom TabPanel component
 function TabPanel(props) {
@@ -152,7 +153,7 @@ const PassportPageView = ({ transactionId }) => {
                 Time
               </Typography>
               <Typography variant="body1">
-                {passport.time}
+                {passport.time ? format(new Date(passport.time), 'dd-MMM-yyyy hh:mm a') : "N/A"}
               </Typography>
             </Grid>
             <Grid item xs={12} sm={4}>
