@@ -52,7 +52,7 @@ const TransactionRow = ({
   return <StyledTableRow tabIndex={-1} role="checkbox">
     <StyledTableCell align="left">
       <Link href={`/dashboard/transaction/${id}`} passHref>
-        <a style={{ textDecoration: 'none', color: 'inherit' }}>{id}</a>
+        <a style={{ textDecoration: 'none', color: 'black'}}>{id}</a>
       </Link>
     </StyledTableCell>
     <StyledTableCell align="left">{time ? format(new Date(time), 'dd-MMM-yyyy hh:mm a') : "N/A"}</StyledTableCell>

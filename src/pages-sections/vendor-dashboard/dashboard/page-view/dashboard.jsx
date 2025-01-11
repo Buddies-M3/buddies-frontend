@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import { Line } from "react-chartjs-2";
 import { ButtonGroup, Button, Typography } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import {
   Chart as ChartJS,
   LineElement,
@@ -13,6 +14,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import { t } from "i18next";
 
 // Register Chart.js components
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Legend);
@@ -21,6 +23,8 @@ const DashboardPageView = () => {
   const [filter, setFilter] = useState("all-time"); // 'day', 'week', 'month', 'all-time'
   const [transactions, setTransactions] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
+
+  const theme = useTheme();
 
   // Fetch transactions data from API
   useEffect(() => {
@@ -68,8 +72,8 @@ const DashboardPageView = () => {
         label: "Number of Transactions",
         data: filteredData.map((t) => t.transactions), // Use 'transactions' instead of index
         fill: false,
-        borderColor: "rgba(75,192,192,1)",
-        backgroundColor: "rgba(75,192,192,0.4)",
+        borderColor: theme.palette.primary.main,
+        backgroundColor: theme.palette.primary.light,
         tension: 0.4,
       },
     ],

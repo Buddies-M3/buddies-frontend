@@ -33,7 +33,7 @@ export const primary = {
   200: "#A2AFC7",  // Light shade
   300: "#7589AC",  // Mid-light shade
   400: "#4E6694",  // Slightly lighter than base
-  500: "#091443",  // Base Color
+  500: "#4ECCA3",  // Base Color
   600: "#08123C",  // Slightly darker than base
   700: "#070F34",  // Dark shade
   800: "#050C2C",  // Darker shade

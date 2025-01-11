@@ -1,6 +1,6 @@
 {
-  "name": "bazaar-next",
-  "version": "4.0.0",
+  "name": "buddies-frontend",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "PORT=3001 next dev",
