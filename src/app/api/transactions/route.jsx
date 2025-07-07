@@ -1,7 +1,7 @@
 import { parse, format } from "date-fns";
 
 export async function GET() {
-  const endpoint = "http://188.166.205.153:8080/transactions";
+  const endpoint = "http://139.59.195.72:8080/transactions";
 
   try {
     const response = await fetch(endpoint, { cache: 'no-store' });

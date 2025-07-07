@@ -20,7 +20,7 @@ export async function GET(req, { params }) {
   }
 
   const transactionId = params.slug;
-  const endpoint = `http://188.166.205.153:8080/transactions/${transactionId}`;
+  const endpoint = `http://139.59.195.72:8080/transactions/${transactionId}`;
 
   try {
     const response = await fetch(endpoint, { cache: 'no-store' });
