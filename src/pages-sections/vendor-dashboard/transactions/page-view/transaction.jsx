@@ -66,20 +66,10 @@ const PassportPageView = ({ transactionId }) => {
           setIDImageBase64(imageData.base64Image);
         }
 
-        // Dummy face recognition data
-        setFaceRecognition({
-          confidence: 0.98,
-          matchStatus: "HIGH_MATCH",
-          landmarks: {
-            eyeDistance: 120,
-            noseTip: { x: 150, y: 180 },
-            faceAngle: 2.5
-          },
-          liveness: {
-            score: 0.99,
-            status: "LIVE"
-          }
-        });
+        // Use real face recognition data from API
+        if (passportData.faceRecognition) {
+          setFaceRecognition(passportData.faceRecognition);
+        }
 
         // Dummy criminal records check
         setCriminalRecord({

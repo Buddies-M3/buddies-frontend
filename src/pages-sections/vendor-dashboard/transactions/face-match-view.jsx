@@ -36,14 +36,14 @@ const FaceMatchView = ({ faceRecognition, passport }) => {
             {faceRecognition.matchStatus || "Unknown"}
           </Typography>
         </Box>
-        <Box sx={{ mb: 3 }}>
+        {/* <Box sx={{ mb: 3 }}>
           <Typography variant="subtitle2" color="text.secondary">
             Liveness Detection
           </Typography>
           <Typography variant="h6">
             {faceRecognition.liveness?.status || "Unknown"} ({(faceRecognition.liveness?.score * 100).toFixed(1)}%)
           </Typography>
-        </Box>
+        </Box> */}
       </Grid>
 
       {/* Photos */}
@@ -86,15 +86,31 @@ const FaceMatchView = ({ faceRecognition, passport }) => {
                     bgcolor: '#f5f5f5',
                   }}
                 >
-                  <CardMedia
-                    component="img"
-                    alt="Live Photo"
-                    sx={{
-                      height: 200,
-                      objectFit: "contain",
-                    }}
-                    image={`${passport.faceImageBase64}`}
-                  />
+                  {passport?.selfieImageBase64 ? (
+                    <CardMedia
+                      component="img"
+                      alt="Live Photo"
+                      sx={{
+                        height: 200,
+                        objectFit: "contain",
+                      }}
+                      image={`${passport.selfieImageBase64}`}
+                    />
+                  ) : (
+                    <Box
+                      sx={{
+                        height: 200,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        color: 'text.secondary',
+                      }}
+                    >
+                      <Typography variant="body2">
+                        Selfie image not available
+                      </Typography>
+                    </Box>
+                  )}
                 </Box>
               </Grid>
             </>

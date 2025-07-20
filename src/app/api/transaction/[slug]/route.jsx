@@ -31,15 +31,18 @@ export async function GET(req, { params }) {
 
     const data = await response.json();
 
-    // Convert JP2 to JPEG via PNG
-    let convertedFaceImage = null;
+    // Convert JP2 to JPEG via PNG for both passport and selfie images
+    let convertedPassportImage = null;
+    let convertedSelfieImage = null;
+    
+    // Process Element 0 of DG2 (Passport Image)
     if (data.dg2?.faceimages?.[0]?.imagebase64) {
       try {
         // Check if opj_compress exists
         await execFileAsync('which', ['opj_compress']);
 
-        // Create temporary files
-        const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), 'jp2-conversion-'));
+        // Create temporary files for passport image
+        const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), 'jp2-conversion-passport-'));
         const inputPath = path.join(tempDir, 'input.jp2');
         const pngPath = path.join(tempDir, 'output.png');
 
@@ -59,13 +62,50 @@ export async function GET(req, { params }) {
           .jpeg({ quality: 90 })
           .toBuffer();
 
-        convertedFaceImage = `data:image/jpeg;base64,${jpegBuffer.toString('base64')}`;
+        convertedPassportImage = `data:image/jpeg;base64,${jpegBuffer.toString('base64')}`;
 
         // Clean up temp files
         await fs.rm(tempDir, { recursive: true });
       } catch (error) {
-        console.error('Image conversion or opj_compress check failed:', error);
-        convertedFaceImage = `data:image/jpeg;base64,${data.dg2.faceimages[0].imagebase64}`;
+        console.error('Passport image conversion or opj_compress check failed:', error);
+        convertedPassportImage = `data:image/jpeg;base64,${data.dg2.faceimages[0].imagebase64}`;
+      }
+    }
+
+    // Process Element 1 of DG2 (Selfie Image)
+    if (data.dg2?.faceimages?.[1]?.imagebase64) {
+      try {
+        // Check if opj_compress exists
+        await execFileAsync('which', ['opj_compress']);
+
+        // Create temporary files for selfie image
+        const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), 'jp2-conversion-selfie-'));
+        const inputPath = path.join(tempDir, 'input.jp2');
+        const pngPath = path.join(tempDir, 'output.png');
+
+        // Write JP2 data to temp file
+        const imageBuffer = Buffer.from(data.dg2.faceimages[1].imagebase64, 'base64');
+        await fs.writeFile(inputPath, imageBuffer);
+
+        // Convert JP2 to PNG using opj_decompress
+        await execFileAsync('opj_decompress', [
+          '-i', inputPath,
+          '-o', pngPath
+        ]);
+
+        // Read PNG and convert to JPEG using Sharp
+        const pngBuffer = await fs.readFile(pngPath);
+        const jpegBuffer = await sharp(pngBuffer)
+          .jpeg({ quality: 90 })
+          .toBuffer();
+
+        convertedSelfieImage = `data:image/jpeg;base64,${jpegBuffer.toString('base64')}`;
+
+        // Clean up temp files
+        await fs.rm(tempDir, { recursive: true });
+      } catch (error) {
+        console.error('Selfie image conversion or opj_compress check failed:', error);
+        convertedSelfieImage = `data:image/jpeg;base64,${data.dg2.faceimages[1].imagebase64}`;
       }
     }
 
@@ -92,7 +132,12 @@ export async function GET(req, { params }) {
       issuanceState: data.dg1?.issuingstate || "N/A",
       issuanceDate: data.dg12?.dateofissue ? format((parse(data.dg12.dateofissue, "yyyyMMdd", new Date())), "dd-MMM-yyyy") : "N/A",
       issuingAuthority: data.dg12?.issuingauthority || "N/A",
-      faceImageBase64: convertedFaceImage || "N/A",
+      faceImageBase64: convertedPassportImage || "N/A",
+      selfieImageBase64: convertedSelfieImage || "N/A",
+      faceRecognition: {
+        confidence: data.simililarity || 0,
+        matchStatus: data.simililarity >= 0.8 ? "Match" : "No Match",
+      },
     };
 
     return new Response(JSON.stringify(mappedTransaction), {
