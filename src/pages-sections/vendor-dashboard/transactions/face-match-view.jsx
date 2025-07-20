@@ -25,7 +25,9 @@ const FaceMatchView = ({ faceRecognition, passport }) => {
             Confidence Score
           </Typography>
           <Typography variant="h6">
-            {(faceRecognition.confidence * 100).toFixed(1)}%
+            {faceRecognition.confidence <= 1 
+              ? (faceRecognition.confidence * 100).toFixed(1) 
+              : faceRecognition.confidence.toFixed(1)}%
           </Typography>
         </Box>
         <Box sx={{ mb: 3 }}>

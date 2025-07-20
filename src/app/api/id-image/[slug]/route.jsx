@@ -1,3 +1,6 @@
+// Get API base URL from environment variable with fallback
+const API_BASE_URL = process.env.API_BASE_URL || 'http://139.59.195.72:8080';
+
 export async function GET(req, { params }) {
     if (!params || !params.slug) {
         return new Response(
@@ -10,7 +13,7 @@ export async function GET(req, { params }) {
     }
 
     const transactionId = params.slug;
-    const endpoint = `http://139.59.195.72:8080/idcards/${transactionId}`;
+    const endpoint = `${API_BASE_URL}/idcards/${transactionId}`;
 
     try {
         const response = await fetch(endpoint, { cache: 'no-store' });

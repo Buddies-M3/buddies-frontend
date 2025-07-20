@@ -1,7 +1,12 @@
 import { parse, format } from "date-fns";
 
+// Get threshold from environment variable with 0.8 fallback
+const SIMILARITY_THRESHOLD = parseFloat(process.env.SIMILARITY_THRESHOLD || '0.8');
+// Get API base URL from environment variable with fallback
+const API_BASE_URL = process.env.API_BASE_URL || 'http://139.59.195.72:8080';
+
 export async function GET() {
-  const endpoint = "http://139.59.195.72:8080/transactions";
+  const endpoint = `${API_BASE_URL}/transactions`;
 
   try {
     const response = await fetch(endpoint, { cache: 'no-store' });
@@ -19,7 +24,7 @@ export async function GET() {
       number: item.dg1.documentnumber || "Unknown",
       expiry: item.dg1.dateofexpiry ? format((parse(item.dg1.dateofexpiry, "ddMMyy", new Date())),"dd-MMM-yyyy") : "N/A",
       nationality: item.dg1.nationality || "Unknown",
-      status: "Completed"/* ["Completed", "Failed"][Math.floor(Math.random() * 2)] */,
+      status: item.simililarity >= SIMILARITY_THRESHOLD ? "Verified" : "Failed",
     }));
 
     return new Response(JSON.stringify(transactions), {
