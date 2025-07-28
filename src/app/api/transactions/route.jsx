@@ -15,6 +15,7 @@ export async function GET() {
     }
 
     const data = await response.json();
+    console.log("Fetched data:", data);
 
     // Map the fetched data to match the required structure
     const transactions = data.map((item) => ({
@@ -24,8 +25,13 @@ export async function GET() {
       number: item.dg1.documentnumber || "Unknown",
       expiry: item.dg1.dateofexpiry ? format((parse(item.dg1.dateofexpiry, "ddMMyy", new Date())),"dd-MMM-yyyy") : "N/A",
       nationality: item.dg1.nationality || "Unknown",
+      similarity: item.simililarity || 0,
       status: item.simililarity >= SIMILARITY_THRESHOLD ? "Verified" : "Failed",
     }));
+
+    for (const transaction of transactions) {
+      console.log(`Transaction ID: ${transaction.id}, Status: ${transaction.status}, Similarity: ${transaction.similarity}, Raw: ${data.find(d => d.sessionid === transaction.id)?.simililarity}`);
+    }
 
     return new Response(JSON.stringify(transactions), {
       headers: {

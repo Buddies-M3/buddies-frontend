@@ -33,7 +33,7 @@ import ConnectionIndicator from "components/system/connection-indicator";
 // ========================================================================
 const TransactionRow = ({
   transaction,
-  handleRowDelete
+  handleDelete
 }) => {
   const {
     id,
@@ -61,7 +61,11 @@ const TransactionRow = ({
     <StyledTableCell align="left">{expiry}</StyledTableCell>
     <StyledTableCell align="left">{nationality}</StyledTableCell>
     <StyledTableCell align="left"><StatusWrapper status={status}>{status}</StatusWrapper></StyledTableCell>
-    
+    <StyledTableCell align="center">
+      <StyledIconButton onClick={() => handleDelete(id)}>
+        <Delete />
+      </StyledIconButton>
+    </StyledTableCell>
   </StyledTableRow>;
   
 };

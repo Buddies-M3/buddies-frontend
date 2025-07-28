@@ -43,36 +43,37 @@ export async function GET(req, { params }) {
     // Process Element 0 of DG2 (Passport Image)
     if (data.dg2?.faceimages?.[0]?.imagebase64) {
       try {
-        // Check if opj_compress exists
-        await execFileAsync('which', ['opj_compress']);
-
-        // Create temporary files for passport image
-        const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), 'jp2-conversion-passport-'));
-        const inputPath = path.join(tempDir, 'input.jp2');
-        const pngPath = path.join(tempDir, 'output.png');
-
-        // Write JP2 data to temp file
         const imageBuffer = Buffer.from(data.dg2.faceimages[0].imagebase64, 'base64');
-        await fs.writeFile(inputPath, imageBuffer);
+        
+        // Try Sharp direct conversion first (supports JP2 with libvips)
+        try {
+          const jpegBuffer = await sharp(imageBuffer)
+            .jpeg({ quality: 90 })
+            .toBuffer();
+          convertedPassportImage = `data:image/jpeg;base64,${jpegBuffer.toString('base64')}`;
+        } catch (sharpError) {
+          // Fallback to opj_decompress method
+          const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), 'jp2-conversion-passport-'));
+          const inputPath = path.join(tempDir, 'input.jp2');
+          const pngPath = path.join(tempDir, 'output.png');
 
-        // Convert JP2 to PNG using opj_decompress
-        await execFileAsync('opj_decompress', [
-          '-i', inputPath,
-          '-o', pngPath
-        ]);
+          await fs.writeFile(inputPath, imageBuffer);
 
-        // Read PNG and convert to JPEG using Sharp
-        const pngBuffer = await fs.readFile(pngPath);
-        const jpegBuffer = await sharp(pngBuffer)
-          .jpeg({ quality: 90 })
-          .toBuffer();
+          await execFileAsync('opj_decompress', [
+            '-i', inputPath,
+            '-o', pngPath
+          ]);
 
-        convertedPassportImage = `data:image/jpeg;base64,${jpegBuffer.toString('base64')}`;
+          const pngBuffer = await fs.readFile(pngPath);
+          const jpegBuffer = await sharp(pngBuffer)
+            .jpeg({ quality: 90 })
+            .toBuffer();
 
-        // Clean up temp files
-        await fs.rm(tempDir, { recursive: true });
+          convertedPassportImage = `data:image/jpeg;base64,${jpegBuffer.toString('base64')}`;
+          await fs.rm(tempDir, { recursive: true });
+        }
       } catch (error) {
-        console.error('Passport image conversion or opj_compress check failed:', error);
+        console.error('Passport image conversion failed:', error);
         convertedPassportImage = `data:image/jpeg;base64,${data.dg2.faceimages[0].imagebase64}`;
       }
     }
@@ -80,36 +81,37 @@ export async function GET(req, { params }) {
     // Process Element 1 of DG2 (Selfie Image)
     if (data.dg2?.faceimages?.[1]?.imagebase64) {
       try {
-        // Check if opj_compress exists
-        await execFileAsync('which', ['opj_compress']);
-
-        // Create temporary files for selfie image
-        const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), 'jp2-conversion-selfie-'));
-        const inputPath = path.join(tempDir, 'input.jp2');
-        const pngPath = path.join(tempDir, 'output.png');
-
-        // Write JP2 data to temp file
         const imageBuffer = Buffer.from(data.dg2.faceimages[1].imagebase64, 'base64');
-        await fs.writeFile(inputPath, imageBuffer);
+        
+        // Try Sharp direct conversion first (supports JP2 with libvips)
+        try {
+          const jpegBuffer = await sharp(imageBuffer)
+            .jpeg({ quality: 90 })
+            .toBuffer();
+          convertedSelfieImage = `data:image/jpeg;base64,${jpegBuffer.toString('base64')}`;
+        } catch (sharpError) {
+          // Fallback to opj_decompress method
+          const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), 'jp2-conversion-selfie-'));
+          const inputPath = path.join(tempDir, 'input.jp2');
+          const pngPath = path.join(tempDir, 'output.png');
 
-        // Convert JP2 to PNG using opj_decompress
-        await execFileAsync('opj_decompress', [
-          '-i', inputPath,
-          '-o', pngPath
-        ]);
+          await fs.writeFile(inputPath, imageBuffer);
 
-        // Read PNG and convert to JPEG using Sharp
-        const pngBuffer = await fs.readFile(pngPath);
-        const jpegBuffer = await sharp(pngBuffer)
-          .jpeg({ quality: 90 })
-          .toBuffer();
+          await execFileAsync('opj_decompress', [
+            '-i', inputPath,
+            '-o', pngPath
+          ]);
 
-        convertedSelfieImage = `data:image/jpeg;base64,${jpegBuffer.toString('base64')}`;
+          const pngBuffer = await fs.readFile(pngPath);
+          const jpegBuffer = await sharp(pngBuffer)
+            .jpeg({ quality: 90 })
+            .toBuffer();
 
-        // Clean up temp files
-        await fs.rm(tempDir, { recursive: true });
+          convertedSelfieImage = `data:image/jpeg;base64,${jpegBuffer.toString('base64')}`;
+          await fs.rm(tempDir, { recursive: true });
+        }
       } catch (error) {
-        console.error('Selfie image conversion or opj_compress check failed:', error);
+        console.error('Selfie image conversion failed:', error);
         convertedSelfieImage = `data:image/jpeg;base64,${data.dg2.faceimages[1].imagebase64}`;
       }
     }

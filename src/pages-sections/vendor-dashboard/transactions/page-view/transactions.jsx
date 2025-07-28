@@ -20,6 +20,7 @@ const tableHeading = [
   { id: "expiry", label: "ID Expiry", align: "left" },
   { id: "nationality", label: "Nationality", align: "left" },
   { id: "status", label: "Status", align: "left" },
+  { id: "action", label: "Action", align: "center" },
 ];
 
 const useTransactions = (filter) => {
@@ -32,6 +33,7 @@ const useTransactions = (filter) => {
         if (!response.ok) throw new Error("Failed to fetch transactions");
         const data = await response.json();
         console.log("Transactions data:", data);
+        console.log("Transaction IDs:", data.map(t => t.id));
         setTransactions(data);
       } catch (error) {
         console.error("Error fetching transactions:", error);
@@ -46,7 +48,12 @@ const useTransactions = (filter) => {
 
 const TransactionsPageView = () => {
   const [filter, setFilter] = useState("");
-  const transactions = useTransactions(filter);
+  const [transactions, setTransactions] = useState([]);
+  const fetchedTransactions = useTransactions(filter);
+
+  useEffect(() => {
+    setTransactions(fetchedTransactions);
+  }, [fetchedTransactions]);
 
   const {
     order,
@@ -64,7 +71,7 @@ const TransactionsPageView = () => {
         const response = await fetch(`/api/transactions/${id}`, {
           method: "DELETE",
         });
-        if (response.status === 200) {
+        if (response.ok) {
           setTransactions(transactions.filter((transaction) => transaction.id !== id));
         } else {
           console.error("Error deleting transaction:", await response.json());
@@ -95,9 +102,9 @@ const TransactionsPageView = () => {
                 hideSelectBtn={true}
               />
               <TableBody>
-                {filteredList.map((transaction, index) => (
+                {filteredList.map((transaction) => (
                   <TransactionRow
-                    key={index}
+                    key={transaction.id}
                     transaction={transaction}
                     handleDelete={handleDelete}
                   />

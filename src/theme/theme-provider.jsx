@@ -20,7 +20,6 @@ const ThemeProvider = ({
     settings
   } = useSettings();
   const themeOptions = customThemeOptions(pathname);
-  console.log("Theme options", themeOptions)
   const mergedThemeOptions = merge({}, { ...themeOptions,
     direction: settings.direction
   });
