@@ -19,9 +19,9 @@ const LoginCartButtons = ({
     state
   } = useCart();
   return <FlexBox gap={1.5} alignItems="center">
-      <Box component={IconButton} p={1.25} bgcolor="grey.200" onClick={toggleDialog}>
+      {/* <Box component={IconButton} p={1.25} bgcolor="grey.300" disabled style={{cursor: 'not-allowed', opacity: 0.5}}>
         <PersonOutline />
-      </Box>
+      </Box> */}
 
       <Badge badgeContent={state.cart.length} color="primary">
         <Box p={1.25} bgcolor="grey.200" component={IconButton} onClick={toggleSidenav}>

@@ -97,19 +97,17 @@ const LoginPageView = () => {
 
 
 
-  return <form onSubmit={handleSubmit}>
-    <BazaarTextField mb={1.5} fullWidth name="email" size="small" type="email" variant="outlined" onBlur={handleBlur} value={values.email} onChange={handleChange} label="Email" placeholder="exmple@mail.com" error={!!touched.email && !!errors.email} helperText={touched.email && errors.email} />
+  return <form onSubmit={(e) => e.preventDefault()}>
+    <div style={{ textAlign: 'center', marginBottom: '2rem', padding: '1rem', backgroundColor: '#f0f0f0', borderRadius: '8px' }}>
+      <p style={{ color: '#666', margin: 0 }}>Login is temporarily disabled</p>
+    </div>
+    
+    <BazaarTextField mb={1.5} fullWidth name="email" size="small" type="email" variant="outlined" disabled value="" label="Email" placeholder="exmple@mail.com" />
 
-    <BazaarTextField mb={2} fullWidth size="small" name="password" label="Password" autoComplete="on" variant="outlined" onBlur={handleBlur} onChange={handleChange} value={values.password} placeholder="*********" type={visiblePassword ? "text" : "password"} error={!!touched.password && !!errors.password} helperText={touched.password && errors.password} InputProps={{
-      endAdornment: <EyeToggleButton show={visiblePassword} click={togglePasswordVisible} />
-    }} />
+    <BazaarTextField mb={2} fullWidth size="small" name="password" label="Password" autoComplete="on" variant="outlined" disabled value="" placeholder="*********" type="password" />
 
-    {wrongCredential && (
-      <p style={{ color: 'red', textAlign: 'center', marginBottom: '1rem' }}>Wrong credentials</p>
-    )}
-
-    <Button fullWidth type="submit" color="primary" variant="contained" size="large">
-      Login
+    <Button fullWidth type="submit" color="primary" variant="contained" size="large" disabled style={{opacity: 0.5}}>
+      Login (Disabled)
     </Button>
   </form>;
 };

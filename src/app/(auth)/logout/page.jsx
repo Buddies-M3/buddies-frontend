@@ -9,30 +9,14 @@ export default function Logout() {
   const router = useRouter();
 
   useEffect(() => {
-    const logout = async () => {
-      try {
-        const response = await fetch('/api-keys/login/api/logout', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-          },
-          body: null
-        });
-
-        if (response.ok) {
-          // Logout successful, redirect to the login page or home page
-          router.push("/login");
-        } else {
-          // Handle errors
-          console.error("Failed to logout");
-        }
-      } catch (error) {
-        console.error("Error logging out:", error);
-      }
-    };
-
-    logout();
+    // Logout functionality is disabled
+    console.log("Logout is disabled");
   }, []);
 
-  return <h6 style={{textAlign: 'center'}}>Logging out</h6>;
+  return (
+    <div style={{textAlign: 'center', padding: '2rem'}}>
+      <h6>Logout is temporarily disabled</h6>
+      <p style={{color: '#666', marginTop: '1rem'}}>Please contact support if you need assistance.</p>
+    </div>
+  );
 }

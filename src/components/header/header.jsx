@@ -1,7 +1,10 @@
 import Link from "next/link";
 import { Fragment } from "react";
+import { useRouter } from "next/navigation";
 import useTheme from "@mui/material/styles/useTheme";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import Button from "@mui/material/Button";
+import TerminalIcon from "@mui/icons-material/Terminal";
 import clsx from "clsx"; // LOCAL CUSTOM HOOKS
 
 import useHeader from "./use-header"; // GLOBAL CUSTOM COMPONENTS
@@ -23,6 +26,7 @@ const Header = ({
   searchInput
 }) => {
   const theme = useTheme();
+  const router = useRouter();
   const downMd = useMediaQuery(theme.breakpoints.down(1150));
   const {
     dialogOpen,
@@ -30,6 +34,11 @@ const Header = ({
     toggleDialog,
     toggleSidenav
   } = useHeader();
+
+  const handleConsoleClick = () => {
+    router.push('/dashboard');
+  };
+
   const CONTENT_FOR_LARGE_DEVICE = <Fragment>
       {
       /* LEFT CONTENT - LOGO AND CATEGORY */
@@ -51,6 +60,23 @@ const Header = ({
       <FlexBox justifyContent="center" flex="1 1 0">
         {searchInput}
       </FlexBox>
+
+      {
+      /* CONSOLE BUTTON */
+    }
+      <Button
+        variant="contained"
+        color="primary"
+        size="small"
+        startIcon={<TerminalIcon />}
+        onClick={handleConsoleClick}
+        sx={{
+          mr: 2,
+          borderRadius: 2
+        }}
+      >
+        Console
+      </Button>
 
       {
       /* LOGIN AND CART BUTTON */

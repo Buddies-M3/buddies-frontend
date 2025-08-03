@@ -126,27 +126,27 @@ const RegisterPageView = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <BazaarTextField mb={1.5} fullWidth name="name" size="small" label="Full Name" variant="outlined" onBlur={handleBlur} value={values.name} onChange={handleChange} placeholder="Ralph Awards" error={!!touched.name && !!errors.name} helperText={touched.name && errors.name} />
+    <form onSubmit={(e) => e.preventDefault()}>
+      <div style={{ textAlign: 'center', marginBottom: '2rem', padding: '1rem', backgroundColor: '#f0f0f0', borderRadius: '8px' }}>
+        <p style={{ color: '#666', margin: 0 }}>Registration is temporarily disabled</p>
+      </div>
 
-      <BazaarTextField mb={1.5} fullWidth name="email" size="small" type="email" variant="outlined" onBlur={handleBlur} value={values.email} onChange={handleChange} label="Email" placeholder="exmple@mail.com" error={!!touched.email && !!errors.email} helperText={touched.email && errors.email} />
+      <BazaarTextField mb={1.5} fullWidth name="name" size="small" label="Full Name" variant="outlined" disabled value="" placeholder="Ralph Awards" />
 
-      <BazaarTextField mb={1.5} fullWidth size="small" name="password" label="Password" variant="outlined" autoComplete="on" placeholder="*********" onBlur={handleBlur} onChange={handleChange} value={values.password} type={visiblePassword ? "text" : "password"} error={!!touched.password && !!errors.password} helperText={touched.password && errors.password} InputProps={inputProps} />
+      <BazaarTextField mb={1.5} fullWidth name="email" size="small" type="email" variant="outlined" disabled value="" label="Email" placeholder="exmple@mail.com" />
 
-      <BazaarTextField fullWidth size="small" autoComplete="on" name="re_password" variant="outlined" label="Retype Password" placeholder="*********" onBlur={handleBlur} onChange={handleChange} value={values.re_password} type={visiblePassword ? "text" : "password"} error={!!touched.re_password && !!errors.re_password} helperText={touched.re_password && errors.re_password} InputProps={inputProps} />
+      <BazaarTextField mb={1.5} fullWidth size="small" name="password" label="Password" variant="outlined" autoComplete="on" placeholder="*********" disabled value="" type="password" />
 
-      <FormControlLabel name="agreement" className="agreement" onChange={handleChange} control={<Checkbox size="small" color="secondary" checked={values.agreement || false} />} label={<FlexBox flexWrap="wrap" alignItems="center" justifyContent="flex-start" gap={1}>
+      <BazaarTextField fullWidth size="small" autoComplete="on" name="re_password" variant="outlined" label="Retype Password" placeholder="*********" disabled value="" type="password" />
+
+      <FormControlLabel name="agreement" className="agreement" disabled control={<Checkbox size="small" color="secondary" checked={false} disabled />} label={<FlexBox flexWrap="wrap" alignItems="center" justifyContent="flex-start" gap={1}>
         <Span display={{ sm: "inline-block", xs: "none" }}>By signing up, you agree to</Span>
         <Span display={{ sm: "none", xs: "inline-block" }}>Accept Our</Span>
         <BoxLink title="Terms & Condition" href="/privacy" />
       </FlexBox>} />
 
-      {emailExists && (
-        <p style={{ color: 'red', marginBottom: '1rem' }}>Email already registered, <Link component="button" variant="body2" onClick={handleResetPassword} style={{ color: 'red', textDecoration: 'underline' }}>Forgot your password?</Link></p>
-      )}
-
-      <Button fullWidth type="submit" color="primary" variant="contained" size="large">
-        Create Account
+      <Button fullWidth type="submit" color="primary" variant="contained" size="large" disabled style={{opacity: 0.5}}>
+        Create Account (Disabled)
       </Button>
 
     </form>

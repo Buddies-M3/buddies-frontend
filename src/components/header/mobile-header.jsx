@@ -1,13 +1,16 @@
 import Link from "next/link";
 import { Fragment } from "react";
+import { useRouter } from "next/navigation";
 import Box from "@mui/material/Box";
 import Badge from "@mui/material/Badge";
 import Drawer from "@mui/material/Drawer";
-import IconButton from "@mui/material/IconButton"; 
+import IconButton from "@mui/material/IconButton";
+import Button from "@mui/material/Button";
 import LoginIcon from '@mui/icons-material/Login';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import PersonIcon from '@mui/icons-material/Person';
+import TerminalIcon from "@mui/icons-material/Terminal";
 
 
 // MUI ICON COMPONENT
@@ -31,6 +34,7 @@ import useHeader from "./use-header"; // =======================================
 const MobileHeader = ({
   searchInput
 }) => {
+  const router = useRouter();
   const {
     state
   } = useCart();
@@ -46,6 +50,10 @@ const MobileHeader = ({
     color: "grey.600",
     fontSize: 20
   };
+
+  const handleConsoleClick = () => {
+    router.push('/dashboard');
+  };
   return <Fragment>
     <FlexBetween width="100%">
       {
@@ -59,22 +67,32 @@ const MobileHeader = ({
         /* MIDDLE CONTENT - LOGO */
       }
       <Link href="/">
-        <Image height={55} src="/assets/images/icons/logo.png" padding="10px" alt="logo" style={{ borderRadius: '10%' }} />
+        <Image height={20} src="/assets/images/logos/idena.png" alt="logo" style={{ borderRadius: '10%' }} />
       </Link>
 
       {
-        /* RIGHT CONTENT - LOGIN, CART, SEARCH BUTTON */
+        /* RIGHT CONTENT - CONSOLE, LOGIN, CART, SEARCH BUTTON */
       }
       <FlexBox justifyContent="end" flex={1}>
-        <Link href='/'>
-          <Box component={IconButton} onClick={toggleDialog}>
-            <LoginIcon sx={ICON_STYLE} />
-          </Box>
-        </Link>
-        <Link href='/register'><Box component={IconButton} onClick={toggleSidenav}>
-          <PersonIcon sx={ICON_STYLE} />
+        <IconButton
+          color="primary"
+          onClick={handleConsoleClick}
+          sx={{
+            mr: 2,
+            borderRadius: '50%',
+            padding: 1
+          }}
+        >
+          <TerminalIcon />
+        </IconButton>
+         
+
+        {/* <Box component={IconButton} style={{opacity: 0.5, cursor: 'not-allowed'}}>
+          <LoginIcon sx={ICON_STYLE} />
         </Box>
-        </Link>
+        <Box component={IconButton} style={{opacity: 0.5, cursor: 'not-allowed'}}>
+          <PersonIcon sx={ICON_STYLE} />
+        </Box> */}
       </FlexBox>
     </FlexBetween>
 

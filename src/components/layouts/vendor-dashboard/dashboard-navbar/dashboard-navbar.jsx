@@ -20,7 +20,7 @@ const DashboardNavbar = () => {
           {
           /* PROFILE & NOTIFICATION BUTTONS AREA */
         }
-          {/* <RightContent /> */}
+          <RightContent />
         </StyledToolBar>
       </Container>
     </DashboardNavbarRoot>;
