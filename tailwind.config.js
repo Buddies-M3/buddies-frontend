@@ -30,8 +30,8 @@ module.exports = {
         black: "#03061F",         // primary[900]
         blackho: "#2B3445",       // grey[900]
         blacksection: "#2B3445",  // grey[900]
-        primary: "#6CBA4D",       // NCTR Green
-        primaryho: "#5A9E3F",     // NCTR Green hover
+        primary: "#35579F",       // NCTR Dark Blue
+        primaryho: "#2A4580",     // NCTR Dark Blue hover
         meta: "#2E7D60",          // success[500]
         waterloo: "#7D879C",      // grey[600]
         manatee: "#AEB4BE",       // grey[500]

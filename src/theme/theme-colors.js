@@ -29,15 +29,15 @@ export const grey = {
 }; */
 
 export const primary = {
-  100: "#E7F4E1",  // Lighter shade of #6CBA4D
-  200: "#CDE8BC",  // Light shade
-  300: "#B4DD97",  // Mid-light shade
-  400: "#9AD172",  // Slightly lighter than base
-  500: "#6CBA4D",  // NCTR Green - Base Color
-  600: "#5A9E3F",  // Slightly darker than base
-  700: "#478231",  // Dark shade
-  800: "#356623",  // Darker shade
-  900: "#234A15"   // Darkest shade
+  100: "#E8F0FF",  // Lighter shade of #35579F
+  200: "#D1E1FF",  // Light shade
+  300: "#A3C3FF",  // Mid-light shade
+  400: "#6B89CF",  // Slightly lighter than base
+  500: "#35579F",  // Dark Blue - Base Color
+  600: "#2A4580",  // Slightly darker than base
+  700: "#1F3461",  // Dark shade
+  800: "#142242",  // Darker shade
+  900: "#0A1123"   // Darkest shade
 };
 
 export const secondary = {
