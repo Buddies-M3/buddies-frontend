@@ -19,14 +19,14 @@ const Hero = () => {
                 🔥 Solid - A Complete SaaS Web Template
               </h4> */}
               <h1 className="mb-5 pr-16 text-3xl font-bold text-black dark:text-white xl:text-hero ">
-              Trust Your Partners with IDENA
+              Trust Your Partners with NCTR
 
                 {/* <span className="relative inline-block before:absolute before:bottom-2.5 before:left-0 before:-z-1 before:h-3 before:w-full before:bg-titlebg dark:before:bg-titlebgdark ">
                   SaaS
                 </span> */}
               </h1>
               <p>
-              Our cutting-edge identity verification service ensures seamless, secure, and quick verification for both web and mobile applications. IDENA provides an easy-to-integrate platform that guarantees safety and reliability for your users.
+              Our cutting-edge identity verification service ensures seamless, secure, and quick verification for both web and mobile applications. NCTR provides an easy-to-integrate platform that guarantees safety and reliability for your users.
               </p>
 
               <div className="mt-10">

@@ -16,11 +16,11 @@ import Integration from "front-page/components/Integration";
 import FeaturesTab from "front-page/components/FeaturesTab";
 
 export const metadata = {
-  title: "IDENA - Trusted Identity Verification Solutions",
-  description: `IDENA provides secure and easy-to-integrate identity verification solutions, including NFC, OCR, and QR code authentication, designed for web and mobile apps.`,
+  title: "NCTR - Trusted Identity Verification Solutions",
+  description: `NCTR provides secure and easy-to-integrate identity verification solutions, including NFC, OCR, and QR code authentication, designed for web and mobile apps.`,
   authors: [{
-    name: "IDENA",
-    url: "https://idena.net"
+    name: "NCTR",
+    url: "https://nctr.sd"
   }],
   //viewport: "width=device-width, initial-scale=1",
   keywords: ["Identity verification", "NFC verification", "OCR document scanning", "QR code authentication", "Middle East", "Africa", "Mobile SDKs", "Secure identity validation", "e-passports", "identity solutions", "remote verification", "KYC", "AML", "GDPR","Face Recognition"]

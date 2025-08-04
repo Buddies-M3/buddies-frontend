@@ -99,11 +99,11 @@ const PrivacyPageView = () => {
                 <span style={{ color: "rgb(0, 58, 250)" }}>
                   <bdt className="question">
                     <a
-                      href="https://www.IDENA.net"
+                      href="https://www.NCTR.net"
                       target="_blank"
                       data-custom-class="link"
                     >
-                      https://www.IDENA.net
+                      https://www.NCTR.net
                     </a>
                   </bdt>
                 </span>
@@ -188,7 +188,7 @@ const PrivacyPageView = () => {
                 use our Services.
                 <bdt className="block-component" /> If you still have any
                 questions or concerns, please contact us at{" "}
-                <bdt className="question">privacy@IDENA.net</bdt>.
+                <bdt className="question">privacy@NCTR.net</bdt>.
               </span>
             </span>
           </span>
@@ -3971,7 +3971,7 @@ const PrivacyPageView = () => {
                                                                     <span data-custom-class="body_text">
                                                                       <bdt className="block-component" />
                                                                       <bdt className="question">
-                                                                        privacy@IDENA.net
+                                                                        privacy@NCTR.net
                                                                       </bdt>
                                                                       <bdt className="else-block" />
                                                                     </span>
@@ -5186,7 +5186,7 @@ const PrivacyPageView = () => {
                                                                 rights, you may
                                                                 email us at{" "}
                                                                 <bdt className="question">
-                                                                  privacy@IDENA.net
+                                                                  privacy@NCTR.net
                                                                 </bdt>
                                                                 .
                                                               </span>
@@ -9273,7 +9273,7 @@ const PrivacyPageView = () => {
                                                                                             us
                                                                                             at{" "}
                                                                                             <bdt className="question">
-                                                                                              hello@IDENA.net
+                                                                                              hello@NCTR.net
                                                                                             </bdt>
                                                                                             ,{" "}
                                                                                             <bdt className="statement-end-if-in-editor" />
@@ -9291,11 +9291,11 @@ const PrivacyPageView = () => {
                                                                                             >
                                                                                               <bdt className="question">
                                                                                                 <a
-                                                                                                  href="https://www.IDENA.net/#contact"
+                                                                                                  href="https://www.NCTR.net/#contact"
                                                                                                   target="_blank"
                                                                                                   data-custom-class="link"
                                                                                                 >
-                                                                                                  https://www.IDENA.net/#contact
+                                                                                                  https://www.NCTR.net/#contact
                                                                                                 </a>
                                                                                               </bdt>
                                                                                             </span>
@@ -9728,7 +9728,7 @@ const PrivacyPageView = () => {
                                                                                     at{" "}
                                                                                     <bdt className="block-component" />
                                                                                     <bdt className="question">
-                                                                                      privacy@IDENA.net
+                                                                                      privacy@NCTR.net
                                                                                     </bdt>
                                                                                     <bdt className="else-block" />
                                                                                     .
@@ -10519,7 +10519,7 @@ const PrivacyPageView = () => {
                                                                                           us
                                                                                           at{" "}
                                                                                           <bdt className="question">
-                                                                                            privacy@IDENA.net
+                                                                                            privacy@NCTR.net
                                                                                             or&nbsp;
                                                                                           </bdt>
                                                                                           <bdt className="statement-end-if-in-editor">

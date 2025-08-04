@@ -13,13 +13,13 @@ const faqData: FAQ[] = [
   },
   {
     id: 3,
-    quest: "How do I integrate IDENA into my app?",
-    ans: "You can integrate IDENA using our SDKs for iOS and Android or through our APIs for web applications. Detailed integration guides and sample code are available.",
+    quest: "How do I integrate NCTR into my app?",
+    ans: "You can integrate NCTR using our SDKs for iOS and Android or through our APIs for web applications. Detailed integration guides and sample code are available.",
   },
   {
     id: 4,
-    quest: "Is IDENA compatible with both mobile and web platforms?",
-    ans: "Yes, IDENA supports Android, iOS, and web platforms, ensuring flexibility for your app or website.",
+    quest: "Is NCTR compatible with both mobile and web platforms?",
+    ans: "Yes, NCTR supports Android, iOS, and web platforms, ensuring flexibility for your app or website.",
   },
   {
     id: 5,

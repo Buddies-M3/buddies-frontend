@@ -21,17 +21,17 @@ module.exports = {
         transparent: "transparent",
         stroke: "#E3E9EF",        // grey[300]
         strokedark: "#2B3445",    // grey[900]
-        hoverdark: "#08123C",     // primary[600]
-        titlebg: "#BDF7E8",       // paste[200]
-        titlebg2: "#FFF8E5",      // warning[100]
-        titlebgdark: "#070F34",   // primary[700]
-        btndark: "#08123C",       // primary[600]
+        hoverdark: "#35579F",     // NCTR Dark Blue
+        titlebg: "#E7F4E1",       // NCTR Green light
+        titlebg2: "#E8F3FF",      // NCTR Blue light
+        titlebgdark: "#35579F",   // NCTR Dark Blue
+        btndark: "#35579F",       // NCTR Dark Blue
         white: "#FFFFFF",         // white.main
         black: "#03061F",         // primary[900]
         blackho: "#2B3445",       // grey[900]
         blacksection: "#2B3445",  // grey[900]
-        primary: "#4ECCA3",       // success.main
-        primaryho: "#3BA37F",     // success[400]
+        primary: "#6CBA4D",       // NCTR Green
+        primaryho: "#5A9E3F",     // NCTR Green hover
         meta: "#2E7D60",          // success[500]
         waterloo: "#7D879C",      // grey[600]
         manatee: "#AEB4BE",       // grey[500]

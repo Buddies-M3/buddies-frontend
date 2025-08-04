@@ -29,10 +29,10 @@ const CTA = () => {
               className="animate_left md:w-[70%] lg:w-1/2"
             >
               <h2 className="mb-4 w-11/12 text-3xl font-bold text-black dark:text-white xl:text-sectiontitle4">
-              About IDENA
+              About NCTR
               </h2>
               <p>
-              IDENA is committed to making digital transactions and interactions secure and trustworthy. Our platform offers identity verification solutions designed to cater to the unique needs of our customers. With our NFC verification, OCR capabilities, mobile SDKs, and QR code authentication, we help businesses and organizations ensure that their users are who they say they are.
+              NCTR is committed to making digital transactions and interactions secure and trustworthy. Our platform offers identity verification solutions designed to cater to the unique needs of our customers. With our NFC verification, OCR capabilities, mobile SDKs, and QR code authentication, we help businesses and organizations ensure that their users are who they say they are.
               </p>
             </motion.div>
             <motion.div

@@ -81,7 +81,7 @@ const Header = () => {
             <div style={{ display: 'flex', alignItems: 'center' }}>
               <Image 
                 height={20} 
-                src="/assets/images/logos/idena.png" 
+                src="/assets/images/logos/nctr-logo.png" 
                 alt="logo" 
                 width={100} 
                 style={{ borderRadius: '10%' }} 

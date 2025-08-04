@@ -15,12 +15,12 @@ const LogoArea = () => {
     handleSidebarCompactToggle
   } = useLayout();
   return <FlexBetween p={2} maxHeight={TOP_HEADER_AREA} justifyContent={COMPACT ? "center" : "space-between"}>
-      <Avatar alt="Green Chains Logo" src={COMPACT ? "/assets/images/logos/idena-white.png" : "/assets/images/logos/idena-white.png"} sx={{
+      <Avatar alt="NCTR Logo" src={COMPACT ? "/assets/images/logos/nctr-logo.png" : "/assets/images/logos/nctr-logo.png"} sx={{
       borderRadius: 0,
       width: "auto",
       marginLeft: COMPACT ? 0 : 1
     }} /> 
-    {/* {COMPACT ? null : <H3>IDENA</H3>} */}
+    {/* {COMPACT ? null : <H3>NCTR</H3>} */}
 
       <ChevronLeftIcon color="disabled" compact={COMPACT} onClick={handleSidebarCompactToggle} sidebar_compact={sidebarCompact ? 1 : 0} />
     </FlexBetween>;

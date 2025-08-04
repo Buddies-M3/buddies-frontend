@@ -13,6 +13,24 @@ const SIMILARITY_THRESHOLD = parseFloat(process.env.SIMILARITY_THRESHOLD || '0.8
 // Get API base URL from environment variable with fallback
 const API_BASE_URL = process.env.API_BASE_URL || 'http://139.59.195.72:8080';
 
+// Function to parse passport dates with proper year handling
+function parsePassportDate(dateString, formatStr) {
+  if (!dateString) return null;
+  
+  if (formatStr === "yyMMdd") {
+    const year = parseInt(dateString.substring(0, 2));
+    const month = dateString.substring(2, 4);
+    const day = dateString.substring(4, 6);
+    
+    // Interpret 2-digit years: assume years > 30 are 19xx, others are 20xx
+    const fullYear = year > 30 ? 1900 + year : 2000 + year;
+    
+    return parse(`${fullYear}${month}${day}`, "yyyyMMdd", new Date());
+  }
+  
+  return parse(dateString, formatStr, new Date());
+}
+
 export async function GET(req, { params }) {
   if (!params || !params.slug) {
     return new Response(
@@ -131,11 +149,11 @@ export async function GET(req, { params }) {
       nationality: data.dg1?.nationality || "N/A",
       gender: data.dg1?.gender || "N/A",
       address: data.dg11?.permanentaddress[0] || "Unknown Address",
-      birthdate: data.dg1?.dateofbirth ? format((parse(data.dg1.dateofbirth, "yyMMdd", new Date())), "dd-MMM-yyyy") : "N/A",
+      birthdate: data.dg1?.dateofbirth ? format(parsePassportDate(data.dg1.dateofbirth, "yyMMdd"), "dd-MMM-yyyy") : "N/A",
       birthplace: data.dg11?.placeofbirth[0] || "N/A",
       occupation: data.dg11?.profession || "Unknown Occupation",
       idType: data.dg1?.documentcode || "Unknown ID Type",
-      expiryDate: data.dg1?.dateofexpiry ? format((parse(data.dg1.dateofexpiry, "yyMMdd", new Date())), "dd-MMM-yyyy") : "N/A",
+      expiryDate: data.dg1?.dateofexpiry ? format(parsePassportDate(data.dg1.dateofexpiry, "yyMMdd"), "dd-MMM-yyyy") : "N/A",
       issuanceState: data.dg1?.issuingstate || "N/A",
       issuanceDate: data.dg12?.dateofissue ? format((parse(data.dg12.dateofissue, "yyyyMMdd", new Date())), "dd-MMM-yyyy") : "N/A",
       issuingAuthority: data.dg12?.issuingauthority || "N/A",

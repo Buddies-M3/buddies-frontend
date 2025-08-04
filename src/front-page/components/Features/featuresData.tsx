@@ -6,7 +6,7 @@ const featuresData: Feature[] = [
     icon: "/images/icon/icon-04.svg",
     title: "Cross-Platform Compatibility",
     description:
-      "IDENA supports Android, iOS, and web platforms, providing the flexibility to integrate into a variety of environments.",
+      "NCTR supports Android, iOS, and web platforms, providing the flexibility to integrate into a variety of environments.",
   },
   {
     id: 2,

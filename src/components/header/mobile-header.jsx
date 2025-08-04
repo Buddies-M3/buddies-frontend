@@ -67,7 +67,7 @@ const MobileHeader = ({
         /* MIDDLE CONTENT - LOGO */
       }
       <Link href="/">
-        <Image height={20} src="/assets/images/logos/idena.png" alt="logo" style={{ borderRadius: '10%' }} />
+        <Image height={20} src="/assets/images/logos/nctr-logo.png" alt="logo" style={{ borderRadius: '10%' }} />
       </Link>
 
       {

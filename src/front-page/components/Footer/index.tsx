@@ -28,22 +28,25 @@ const Footer = ({isShort = false}) => {
                 viewport={{ once: true }}
                 className="animate_top w-1/2 lg:w-1/4"
               >
-                <a href="index.html" className="relative">
-                  <Image
-                    width={90}
-                    height={47.5}
-                    src="/assets/images/logos/idena.png"
-                    alt="Logo"
-                    className="dark:hidden"
-                  />
-                  <Image
-                    width={90}
-                    height={67.5}
-                    src="/assets/images/logos/idena.png"
-                    alt="Logo"
-                    className="hidden dark:block"
-                  />
-                </a>
+                <div className="flex flex-col items-start">
+                  <a href="index.html" className="relative">
+                    <Image
+                      width={90}
+                      height={47.5}
+                      src="/assets/images/logos/nctr-logo.png"
+                      alt="Logo"
+                      className="dark:hidden"
+                    />
+                    <Image
+                      width={90}
+                      height={67.5}
+                      src="/assets/images/logos/nctr-logo.png"
+                      alt="Logo"
+                      className="hidden dark:block"
+                    />
+                  </a>
+                  <h3 className="mt-2 text-2xl font-bold text-black dark:text-white">Nile Center for Technology Research (NCTR)</h3>
+                </div>
 
                 <p className="mb-10 mt-5">
                 Helping you verify identities with cutting-edge technology.
@@ -165,14 +168,12 @@ const Footer = ({isShort = false}) => {
                   <h4 className="mb-9 text-itemtitle2 font-medium text-black dark:text-white">
                     Find Us
                   </h4>
-                  <div className="mb-3 inline-block hover:text-primary">
-                    
-                    <p>Dubai, United Arab Emirates</p>
+                  <div className="mb-3 hover:text-primary">
+                    <p>Khartoum, Sudan</p>
                   </div>
-                  <div className="mb-3 inline-block hover:text-primary">
-                    
+                  <div className="mb-3 hover:text-primary">
                     <p>
-                      <a href="mailto:support@idena.net">hello@idena.net</a>
+                      <a href="mailto:hello@nctr.sd">hello@nctr.sd</a>
                     </p>
                   </div>
                   <div>
@@ -240,7 +241,7 @@ const Footer = ({isShort = false}) => {
               className="animate_top"
             >
               <p>
-                &copy; {new Date().getFullYear()} IDENA Inc. All rights reserved
+                &copy; {new Date().getFullYear()} NCTR Inc. All rights reserved
               </p>
             </motion.div>
 

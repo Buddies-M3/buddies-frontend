@@ -29,29 +29,29 @@ export const grey = {
 }; */
 
 export const primary = {
-  100: "#D0D5E3",  // Lighter shade
-  200: "#A2AFC7",  // Light shade
-  300: "#7589AC",  // Mid-light shade
-  400: "#4E6694",  // Slightly lighter than base
-  500: "#4ECCA3",  // Base Color
-  600: "#08123C",  // Slightly darker than base
-  700: "#070F34",  // Dark shade
-  800: "#050C2C",  // Darker shade
-  900: "#03061F"   // Darkest shade
+  100: "#E7F4E1",  // Lighter shade of #6CBA4D
+  200: "#CDE8BC",  // Light shade
+  300: "#B4DD97",  // Mid-light shade
+  400: "#9AD172",  // Slightly lighter than base
+  500: "#6CBA4D",  // NCTR Green - Base Color
+  600: "#5A9E3F",  // Slightly darker than base
+  700: "#478231",  // Dark shade
+  800: "#356623",  // Darker shade
+  900: "#234A15"   // Darkest shade
 };
 
 export const secondary = {
-  100: "#e8e8ee",
-  200: "#b9bacb",
-  300: "#8a8ca8",
-  400: "#5b5d85",
-  500: "#141850",
-  600: "#0F3460",
-  700: "#101340",
-  800: "#0e1138",
-  900: "#0c0e30",
-  main: "#0F3460",
-  dark: "#0c0e30"
+  100: "#E8F3FF",  // Lighter shade of #66AADF
+  200: "#D1E7FF",  // Light shade
+  300: "#A3CFFF",  // Mid-light shade
+  400: "#84BCEF",  // Slightly lighter than base
+  500: "#66AADF",  // NCTR Blue - Base Color
+  600: "#4D8BC7",  // Slightly darker than base
+  700: "#356CAF",  // Dark shade
+  800: "#1C4D97",  // Darker shade
+  900: "#0A2E7F",  // Darkest shade
+  main: "#66AADF",
+  dark: "#35579F"
 };
 export const error = {
   100: "#FFEAEA",
@@ -79,16 +79,16 @@ export const success = {
 };
 export const blue = {
   50: "#f3f5f9",
-  100: "#DBF0FE",
-  200: "#B8DEFE",
-  300: "#94C9FE",
-  400: "#7AB6FD",
-  500: "#4E97FD",
-  600: "#3975D9",
-  700: "#2756B6",
-  800: "#183C92",
-  900: "#0E2979",
-  main: "#4E97FD",
+  100: "#E8F3FF",
+  200: "#D1E7FF",
+  300: "#A3CFFF",
+  400: "#84BCEF",
+  500: "#66AADF",  // NCTR Blue
+  600: "#35579F",  // NCTR Dark Blue
+  700: "#2A4580",
+  800: "#1F3461",
+  900: "#142242",
+  main: "#66AADF",
   contrastText: "#FFFFFF"
 };
 export const marron = {
