@@ -126,30 +126,31 @@ const RegisterPageView = () => {
   }
 
   return (
-    <form onSubmit={(e) => e.preventDefault()}>
-      <div style={{ textAlign: 'center', marginBottom: '2rem', padding: '1rem', backgroundColor: '#f0f0f0', borderRadius: '8px' }}>
-        <p style={{ color: '#666', margin: 0 }}>Registration is temporarily disabled</p>
+    <Fragment>
+      <div style={{ textAlign: 'center', marginBottom: '2rem', padding: '1rem', backgroundColor: '#fff3cd', borderRadius: '8px', border: '1px solid #ffeaa7' }}>
+        <p style={{ color: '#856404', margin: 0, fontSize: '14px' }}>Registration is currently disabled. Please contact support for account creation.</p>
       </div>
 
-      <BazaarTextField mb={1.5} fullWidth name="name" size="small" label="Full Name" variant="outlined" disabled value="" placeholder="Ralph Awards" />
+      <form onSubmit={(e) => e.preventDefault()}>
+        <BazaarTextField mb={1.5} fullWidth name="name" size="small" label="Full Name" variant="outlined" disabled value="" placeholder="Ralph Awards" />
 
-      <BazaarTextField mb={1.5} fullWidth name="email" size="small" type="email" variant="outlined" disabled value="" label="Email" placeholder="exmple@mail.com" />
+        <BazaarTextField mb={1.5} fullWidth name="email" size="small" type="email" variant="outlined" disabled value="" label="Email" placeholder="example@mail.com" />
 
-      <BazaarTextField mb={1.5} fullWidth size="small" name="password" label="Password" variant="outlined" autoComplete="on" placeholder="*********" disabled value="" type="password" />
+        <BazaarTextField mb={1.5} fullWidth size="small" name="password" label="Password" variant="outlined" autoComplete="on" placeholder="*********" disabled value="" type="password" />
 
-      <BazaarTextField fullWidth size="small" autoComplete="on" name="re_password" variant="outlined" label="Retype Password" placeholder="*********" disabled value="" type="password" />
+        <BazaarTextField fullWidth size="small" autoComplete="on" name="re_password" variant="outlined" label="Retype Password" placeholder="*********" disabled value="" type="password" />
 
-      <FormControlLabel name="agreement" className="agreement" disabled control={<Checkbox size="small" color="secondary" checked={false} disabled />} label={<FlexBox flexWrap="wrap" alignItems="center" justifyContent="flex-start" gap={1}>
-        <Span display={{ sm: "inline-block", xs: "none" }}>By signing up, you agree to</Span>
-        <Span display={{ sm: "none", xs: "inline-block" }}>Accept Our</Span>
-        <BoxLink title="Terms & Condition" href="/privacy" />
-      </FlexBox>} />
+        <FormControlLabel name="agreement" className="agreement" disabled control={<Checkbox size="small" color="secondary" checked={false} disabled />} label={<FlexBox flexWrap="wrap" alignItems="center" justifyContent="flex-start" gap={1}>
+          <Span display={{ sm: "inline-block", xs: "none" }}>By signing up, you agree to</Span>
+          <Span display={{ sm: "none", xs: "inline-block" }}>Accept Our</Span>
+          <BoxLink title="Terms & Condition" href="/privacy" />
+        </FlexBox>} />
 
-      <Button fullWidth type="submit" color="primary" variant="contained" size="large" disabled style={{opacity: 0.5}}>
-        Create Account (Disabled)
-      </Button>
-
-    </form>
+        <Button fullWidth type="submit" color="primary" variant="contained" size="large" disabled style={{opacity: 0.5}}>
+          Create Account (Disabled)
+        </Button>
+      </form>
+    </Fragment>
   );
 };
 

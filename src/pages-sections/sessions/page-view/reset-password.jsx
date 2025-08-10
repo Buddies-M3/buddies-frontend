@@ -82,30 +82,27 @@ const ResetPassword = () => {
         Reset your password
       </H3>
 
-      <Box onSubmit={handleSubmit} component="form" display="flex" flexDirection="column" gap={2}>
-        {/* Conditionally render email field based on emailSent state */}
-        {!emailSent && (
-          <TextField fullWidth name="email" type="email" label="Email" onBlur={handleBlur} value={values.email} onChange={handleChange} helperText={touched.email && errors.email} error={Boolean(touched.email && errors.email)} />
-        )}
+      <div style={{ textAlign: 'center', marginBottom: '2rem', padding: '1rem', backgroundColor: '#fff3cd', borderRadius: '8px', border: '1px solid #ffeaa7' }}>
+        <p style={{ color: '#856404', margin: 0, fontSize: '14px' }}>Password reset is currently disabled. Please contact support for assistance.</p>
+      </div>
 
-        {/* Conditionally render reset button based on emailSent state */}
-        {!emailSent && (
-          <Button fullWidth type="submit" color="primary" variant="contained">
-            Reset
-          </Button>
-        )}
+      <Box component="form" display="flex" flexDirection="column" gap={2} onSubmit={(e) => e.preventDefault()}>
+        <TextField fullWidth name="email" type="email" label="Email" disabled value="" placeholder="Enter your email" />
 
-        {/* Conditionally render success message based on emailSent state */}
-        {emailSent && (
-          <p>Password reset link has been sent to your email. Please check your inbox.</p>
-        )}
+        <Button fullWidth type="submit" color="primary" variant="contained" disabled style={{opacity: 0.5}}>
+          Reset (Disabled)
+        </Button>
       </Box>
 
-      {!emailSent && <FlexRowCenter mt={3} justifyContent="center" gap={1}>
+      <FlexRowCenter mt={3} justifyContent="center" gap={1} style={{opacity: 0.5}}>
         Don&apos;t have an account?
-        <BoxLink title="Register" href="/register" />
-      </FlexRowCenter>}
-      {emailSent &&  <Box textAlign="center" mb={2}><Link component="button" variant="body2" onClick={handleLogin} style={{textAlign: 'center'}}>Login</Link></Box>}
+        <span style={{color: '#666', textDecoration: 'none', cursor: 'not-allowed'}}>Register (Disabled)</span>
+      </FlexRowCenter>
+
+      <FlexRowCenter mt={2} justifyContent="center" gap={1} style={{opacity: 0.5}}>
+        Remember your password?
+        <span style={{color: '#666', textDecoration: 'none', cursor: 'not-allowed'}}>Login (Disabled)</span>
+      </FlexRowCenter>
     </Fragment>
   );
 };

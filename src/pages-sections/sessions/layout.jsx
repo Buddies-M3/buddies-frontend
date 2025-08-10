@@ -17,6 +17,7 @@ const AuthLayout = ({
   children
 }) => {
   const pathname = usePathname();
+  console.log('AuthLayout pathname:', pathname); // Debug log
   let BOTTOM_CONTENT = null; // APPLIED FOR ONLY LOGIN PAGE
 
   const handleConsoleClick = () => {
