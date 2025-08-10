@@ -55,10 +55,10 @@ const LoginPageView = () => {
       const userUid = 'user_' + Math.random().toString(36).substr(2, 9);
       const localId = 'local_' + Math.random().toString(36).substr(2, 9);
       
-      // Set authentication cookies
-      setCookie(USER_TOKEN, sessionToken, { expires: 180 });
-      setCookie(UID, userUid, { expires: 180 });
-      setCookie(USER_LOCAL_ID, localId, { expires: 180 });
+      // Set authentication cookies (persistent - no expiration)
+      setCookie(USER_TOKEN, sessionToken);
+      setCookie(UID, userUid);
+      setCookie(USER_LOCAL_ID, localId);
       
       console.log("Login successful");
       router.push('/dashboard');

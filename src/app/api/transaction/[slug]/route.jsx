@@ -143,7 +143,7 @@ export async function GET(req, { params }) {
       sourceIP: "203.0.113.1",
       owner: data.dg11?.fullname || "Unknown Owner",
       type: ["OCR", "NFC", "QR"][Math.floor(Math.random() * 3)],
-      status: data.simililarity >= SIMILARITY_THRESHOLD ? "Verified" : "Failed",
+      status: (data.simililarity >= SIMILARITY_THRESHOLD && (data.live !== false)) ? "Verified" : "Failed",
       fullName: data.dg11?.fullname || "Unknown",
       idNumber: data.dg1?.documentnumber || "N/A",
       nationality: data.dg1?.nationality || "N/A",
@@ -162,6 +162,9 @@ export async function GET(req, { params }) {
       faceRecognition: {
         confidence: data.simililarity || 0,
         matchStatus: data.simililarity >= SIMILARITY_THRESHOLD ? "Match" : "No Match",
+        transaction: data.id || transactionId || "Unknown",
+        live: data.live !== undefined ? data.live : true,
+        livenessScore: data.livenessscore || data.liveness_score || 0,
       },
     };
 

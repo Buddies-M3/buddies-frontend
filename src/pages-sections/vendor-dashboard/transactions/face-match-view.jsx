@@ -26,8 +26,8 @@ const FaceMatchView = ({ faceRecognition, passport }) => {
           </Typography>
           <Typography variant="h6">
             {faceRecognition.confidence <= 1 
-              ? (faceRecognition.confidence * 100).toFixed(1) 
-              : faceRecognition.confidence.toFixed(1)}%
+              ? (faceRecognition.confidence * 100).toFixed(2) 
+              : faceRecognition.confidence.toFixed(2)}%
           </Typography>
         </Box>
         <Box sx={{ mb: 3 }}>
@@ -36,6 +36,26 @@ const FaceMatchView = ({ faceRecognition, passport }) => {
           </Typography>
           <Typography variant="h6">
             {faceRecognition.matchStatus || "Unknown"}
+          </Typography>
+        </Box>
+        <Box sx={{ mb: 3 }}>
+          <Typography variant="subtitle2" color="text.secondary">
+            Liveness Score
+          </Typography>
+          <Typography variant="h6">
+            {faceRecognition.livenessScore !== undefined 
+              ? (faceRecognition.livenessScore <= 1 
+                ? (faceRecognition.livenessScore * 100).toFixed(1) 
+                : faceRecognition.livenessScore.toFixed(1))
+              : "0.0"}%
+          </Typography>
+        </Box>
+        <Box sx={{ mb: 3 }}>
+          <Typography variant="subtitle2" color="text.secondary">
+            Live
+          </Typography>
+          <Typography variant="h6">
+            {faceRecognition.live !== undefined ? (faceRecognition.live ? "True" : "False") : "Unknown"}
           </Typography>
         </Box>
         {/* <Box sx={{ mb: 3 }}>

@@ -26,7 +26,7 @@ export async function GET() {
       expiry: item.dg1.dateofexpiry ? format((parse(item.dg1.dateofexpiry, "ddMMyy", new Date())),"dd-MMM-yyyy") : "N/A",
       nationality: item.dg1.nationality || "Unknown",
       similarity: item.simililarity || 0,
-      status: item.simililarity >= SIMILARITY_THRESHOLD ? "Verified" : "Failed",
+      status: (item.simililarity >= SIMILARITY_THRESHOLD && (item.live !== false)) ? "Verified" : "Failed",
     }));
 
     for (const transaction of transactions) {
