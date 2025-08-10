@@ -7,6 +7,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { CardMedia, Button, Tab, Tabs } from "@mui/material";
+import { useRouter } from 'next/navigation';
 import NFCIcon from '@mui/icons-material/Nfc';
 import OCRIcon from '@mui/icons-material/TextFields';
 import FaceRecognitionIcon from '@mui/icons-material/Face';
@@ -40,6 +41,7 @@ function TabPanel(props) {
 }
 
 const PassportPageView = ({ transactionId }) => {
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState(0);
   const [passport, setPassport] = useState(null);
   const [IdImageBase64, setIDImageBase64] = useState(null);
@@ -118,7 +120,7 @@ const PassportPageView = ({ transactionId }) => {
       <Button
         variant="outlined"
         sx={{ mb: 3 }}
-        onClick={() => window.history.back()}
+        onClick={() => router.push('/dashboard/transactions')}
       >
         Back to Transactions
       </Button>
