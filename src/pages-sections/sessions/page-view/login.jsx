@@ -47,24 +47,35 @@ const LoginPageView = () => {
   const HARDCODED_EMAIL = "admin@nctr.sd";
   const HARDCODED_PASSWORD = "Nctr@2024#Admin!";
   
-  const handleLoginSubmit = async (values) => {
-    // Check hardcoded credentials
-    if (values.email === HARDCODED_EMAIL && values.password === HARDCODED_PASSWORD) {
-      // Generate session tokens
-      const sessionToken = Math.random().toString(36).substr(2) + Date.now().toString(36);
-      const userUid = 'user_' + Math.random().toString(36).substr(2, 9);
-      const localId = 'local_' + Math.random().toString(36).substr(2, 9);
+  const handleLoginSubmit = async (values, { setSubmitting }) => {
+    try {
+      setWrongCredential(false);
       
-      // Set authentication cookies (persistent - no expiration)
-      setCookie(USER_TOKEN, sessionToken);
-      setCookie(UID, userUid);
-      setCookie(USER_LOCAL_ID, localId);
-      
-      console.log("Login successful");
-      router.push('/dashboard');
-    } else {
-      console.log('Invalid credentials');
+      // Check hardcoded credentials
+      if (values.email === HARDCODED_EMAIL && values.password === HARDCODED_PASSWORD) {
+        // Generate session tokens
+        const sessionToken = Math.random().toString(36).substr(2) + Date.now().toString(36);
+        const userUid = 'user_' + Math.random().toString(36).substr(2, 9);
+        const localId = 'local_' + Math.random().toString(36).substr(2, 9);
+        
+        // Set authentication cookies (persistent - no expiration)
+        setCookie(USER_TOKEN, sessionToken);
+        setCookie(UID, userUid);
+        setCookie(USER_LOCAL_ID, localId);
+        
+        console.log("Login successful");
+        
+        // Use window.location for reliable navigation
+        window.location.href = '/dashboard';
+      } else {
+        console.log('Invalid credentials');
+        setWrongCredential(true);
+      }
+    } catch (error) {
+      console.error('Login error:', error);
       setWrongCredential(true);
+    } finally {
+      setSubmitting(false);
     }
   }
 
@@ -74,7 +85,8 @@ const LoginPageView = () => {
     touched,
     handleBlur,
     handleChange,
-    handleSubmit
+    handleSubmit,
+    isSubmitting
   } = useFormik({
     initialValues,
     validationSchema,
@@ -129,8 +141,15 @@ const LoginPageView = () => {
         }}
       />
 
-      <Button fullWidth type="submit" color="primary" variant="contained" size="large">
-        Login
+      <Button 
+        fullWidth 
+        type="submit" 
+        color="primary" 
+        variant="contained" 
+        size="large"
+        disabled={isSubmitting}
+      >
+        {isSubmitting ? "Signing in..." : "Login"}
       </Button>
     </form>
   </Fragment>;
