@@ -12,11 +12,13 @@ import NFCIcon from '@mui/icons-material/Nfc';
 import OCRIcon from '@mui/icons-material/TextFields';
 import FaceRecognitionIcon from '@mui/icons-material/Face';
 import VerificationIcon from '@mui/icons-material/Verified';
+import SecurityIcon from '@mui/icons-material/Security';
 import { StatusWrapper } from "pages-sections/vendor-dashboard/styles";
 import PassportView from "../passport-view";
 import DocumentView from "../document-view";
 import FaceMatchView from "../face-match-view";
 import Verification from "../Verification";
+import SecurityView from "../security-view";
 import format from "date-fns/format";
 
 // Custom TabPanel component
@@ -58,7 +60,9 @@ const PassportPageView = ({ transactionId }) => {
         const passportData = await passportResponse.json();
         setPassport(passportData);
 
-        console.log(passportData);
+        console.log('Transaction page - passport data:', passportData);
+        console.log('Transaction page - has sod:', !!passportData.sod);
+        console.log('Transaction page - sod data:', passportData.sod);
 
         // Fetch ID image
         const imageResponse = await fetch(`/api/id-image/${transactionId}`);
@@ -172,6 +176,7 @@ const PassportPageView = ({ transactionId }) => {
               <Tab icon={<NFCIcon />} label="NFC" />
               <Tab icon={<OCRIcon />} label="OCR" />
               <Tab icon={<FaceRecognitionIcon />} label="Face Recognition" />
+              <Tab icon={<SecurityIcon />} label="Document Security" />
               <Tab icon={<VerificationIcon />} label="Verification" />
             </Tabs>
           </Box>
@@ -252,8 +257,13 @@ const PassportPageView = ({ transactionId }) => {
             )}
           </TabPanel>
 
-          {/* Tab 4: Verification */}
+          {/* Tab 4: Document Security */}
           <TabPanel value={activeTab} index={3}>
+            <SecurityView passport={passport} />
+          </TabPanel>
+
+          {/* Tab 5: Verification */}
+          <TabPanel value={activeTab} index={4}>
             {criminalRecord && (
               <Verification criminalRecord={criminalRecord} />
             )}

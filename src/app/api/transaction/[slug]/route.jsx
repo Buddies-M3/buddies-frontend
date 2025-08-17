@@ -166,6 +166,8 @@ export async function GET(req, { params }) {
         live: data.live !== undefined ? data.live : true,
         livenessScore: data.livenessscore || data.liveness_score || 0,
       },
+      // Security fields for SecurityView component (document security only)
+      sod: data.sod || null,
     };
 
     return new Response(JSON.stringify(mappedTransaction), {
