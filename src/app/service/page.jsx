@@ -1,0 +1,20 @@
+import { ServicePageView } from "pages-sections/vendor-dashboard/service/page-view";
+import { VendorDashboardLayout } from "components/layouts/vendor-dashboard";
+
+export const metadata = {
+  title: "Service - NCTR",
+  description: `NCTR provides secure and easy-to-integrate identity verification solutions, including NFC, OCR, and QR code authentication, designed for web and mobile apps.`,
+  authors: [{
+    name: "NCTR",
+    url: "https://nctr.sd"
+  }],
+  keywords: ["Identity verification", "NFC verification", "OCR document scanning", "QR code authentication", "Middle East", "Africa", "Mobile SDKs", "Secure identity validation", "e-passports", "identity solutions", "remote verification", "KYC", "AML", "GDPR","Face Recognition"]
+};
+
+export default function Service() {
+  return (
+    <VendorDashboardLayout>
+      <ServicePageView />
+    </VendorDashboardLayout>
+  );
+}

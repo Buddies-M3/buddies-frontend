@@ -4,7 +4,9 @@
       "Bash(find:*)",
       "mcp__ide__executeCode",
       "Bash(node:*)",
-      "Bash(rm:*)"
+      "Bash(rm:*)",
+      "Bash(mkdir:*)",
+      "Bash(npm install:*)"
     ],
     "deny": []
   }

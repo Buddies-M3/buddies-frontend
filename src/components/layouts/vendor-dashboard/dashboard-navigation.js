@@ -7,6 +7,7 @@ import ExternalLinkIcon from '@mui/icons-material/OpenInNew';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import HistoryIcon from '@mui/icons-material/History';
 import DescriptionIcon from '@mui/icons-material/Description';
+import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 
 export const navigation = [{
   type: "label",
@@ -152,6 +153,10 @@ export const gcNavigation = [{
   name: "Transactions",
   icon: HistoryIcon,
   path: "/dashboard/transactions"
+}, {
+  name: "Service",
+  icon: VerifiedUserIcon,
+  path: "/service"
 }, {
   name: (
     <>
