@@ -14,8 +14,11 @@ export async function POST(request) {
     }
 
     // Forward the verification to the session-specific endpoint
-    const verificationUrl = new URL(`/api/service/verification/${sessionId}`, request.url);
-    const verificationResponse = await fetch(verificationUrl.toString(), {
+    const baseUrl = process.env.NODE_ENV === 'production' 
+      ? `https://${request.headers.get('host')}` 
+      : new URL(request.url).origin;
+    const verificationUrl = `${baseUrl}/api/service/verification/${sessionId}`;
+    const verificationResponse = await fetch(verificationUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
