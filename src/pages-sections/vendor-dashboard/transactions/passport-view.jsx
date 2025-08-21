@@ -1,7 +1,31 @@
 import React from 'react';
-import { Grid, Box, Typography, Avatar } from '@mui/material';
+import { Grid, Box, Typography, Avatar, Alert } from '@mui/material';
+import WarningIcon from '@mui/icons-material/Warning';
 
 const PassportView = ({ passport }) => {
+  // Helper function to check if document is expired
+  const isDocumentExpired = (expiryDateStr) => {
+    if (!expiryDateStr || expiryDateStr === 'N/A') return false;
+    
+    try {
+      // Parse the formatted date (dd-MMM-yyyy)
+      const [day, month, year] = expiryDateStr.split('-');
+      const monthMap = {
+        'Jan': 0, 'Feb': 1, 'Mar': 2, 'Apr': 3, 'May': 4, 'Jun': 5,
+        'Jul': 6, 'Aug': 7, 'Sep': 8, 'Oct': 9, 'Nov': 10, 'Dec': 11
+      };
+      
+      const expiryDate = new Date(parseInt(year), monthMap[month], parseInt(day));
+      const today = new Date();
+      today.setHours(0, 0, 0, 0); // Reset time for accurate comparison
+      
+      return expiryDate < today;
+    } catch (error) {
+      console.warn('Error parsing expiry date:', error);
+      return false;
+    }
+  };
+
   if (!passport) {
     return (
       <Typography variant="h6" color="text.secondary">
@@ -67,7 +91,9 @@ const PassportView = ({ passport }) => {
           <Typography variant="subtitle2" color="text.secondary">
             Expiry Date
           </Typography>
-          <Typography variant="h6">{passport.expiryDate || 'N/A'}</Typography>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <Typography variant="h6">{passport.expiryDate || 'N/A'}</Typography>
+          </Box>
         </Box>
         <Box sx={{ mb: 2 }}>
           <Typography variant="subtitle2" color="text.secondary">

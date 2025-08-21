@@ -14,20 +14,33 @@ const SIMILARITY_THRESHOLD = parseFloat(process.env.SIMILARITY_THRESHOLD || '0.8
 const API_BASE_URL = process.env.API_BASE_URL || 'http://139.59.195.72:8080';
 
 // Function to parse passport dates with proper year handling
-function parsePassportDate(dateString, formatStr) {
+function toFourDigitYear(yy, pivot = 69) {
+  return yy >= pivot ? 1900 + yy : 2000 + yy;
+}
+
+export function parsePassportDate(dateString, formatStr, opts = {}) {
   if (!dateString) return null;
-  
+
+  // Allow overriding the pivot or forcing 2000-century (useful for expiry)
+  const { pivot = 69, force2000ForExpiry = false, field } = opts;
+
   if (formatStr === "yyMMdd") {
-    const year = parseInt(dateString.substring(0, 2));
-    const month = dateString.substring(2, 4);
-    const day = dateString.substring(4, 6);
-    
-    // Interpret 2-digit years: assume years > 30 are 19xx, others are 20xx
-    const fullYear = year > 30 ? 1900 + year : 2000 + year;
-    
-    return parse(`${fullYear}${month}${day}`, "yyyyMMdd", new Date());
+    const yy = parseInt(dateString.substring(0, 2), 10);
+    const mm = dateString.substring(2, 4);
+    const dd = dateString.substring(4, 6);
+
+    let fullYear;
+    if (force2000ForExpiry || field === "expiry") {
+      // Many passports have ≤10-year validity; mapping to 20xx is usually correct.
+      fullYear = 2000 + yy;
+    } else {
+      // Generic/DOB behavior with a sensible pivot (69 by default).
+      fullYear = toFourDigitYear(yy, pivot);
+    }
+
+    return parse(`${fullYear}${mm}${dd}`, "yyyyMMdd", new Date());
   }
-  
+
   return parse(dateString, formatStr, new Date());
 }
 

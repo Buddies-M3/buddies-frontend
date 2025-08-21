@@ -23,7 +23,37 @@ export async function GET() {
       time: item.createdat || "N/A",
       owner: item.dg11.fullname || "Unknown Owner",
       number: item.dg1.documentnumber || "Unknown",
-      expiry: item.dg1.dateofexpiry ? format((parse(item.dg1.dateofexpiry, "ddMMyy", new Date())),"dd-MMM-yyyy") : "N/A",
+      expiry: item.dg1.dateofexpiry ? (() => {
+        try {
+          const dateStr = item.dg1.dateofexpiry;
+          console.log(`Parsing expiry date: ${dateStr}`);
+          
+          // Try YYMMDD format first (YY MM DD)
+          const year = dateStr.slice(0, 2);
+          const month = dateStr.slice(2, 4);
+          const day = dateStr.slice(4, 6);
+          
+          console.log(`Parsed components - year: ${year}, month: ${month}, day: ${day}`);
+          
+          // Convert 2-digit year to 4-digit (passport expiry dates should be 20xx)
+          const fullYear = parseInt(year) + 2000;
+          console.log(`Full year: ${fullYear}`);
+          
+          const parsed = new Date(fullYear, parseInt(month) - 1, parseInt(day));
+          console.log(`Created date object: ${parsed}`);
+          
+          if (isNaN(parsed.getTime())) {
+            console.warn(`Invalid date after parsing: ${dateStr}`);
+            return dateStr;
+          }
+          const formatted = format(parsed, "dd-MMM-yyyy");
+          console.log(`Formatted result: ${formatted}`);
+          return formatted;
+        } catch (error) {
+          console.warn(`Failed to parse date: ${item.dg1.dateofexpiry}`, error);
+          return item.dg1.dateofexpiry;
+        }
+      })() : "N/A",
       nationality: item.dg1.nationality || "Unknown",
       similarity: item.simililarity || 0,
       status: (item.simililarity >= SIMILARITY_THRESHOLD && (item.live !== false)) ? "Verified" : "Failed",

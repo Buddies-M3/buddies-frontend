@@ -6,13 +6,14 @@ import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import { CardMedia, Button, Tab, Tabs } from "@mui/material";
+import { CardMedia, Button, Tab, Tabs, Alert } from "@mui/material";
 import { useRouter } from 'next/navigation';
 import NFCIcon from '@mui/icons-material/Nfc';
 import OCRIcon from '@mui/icons-material/TextFields';
 import FaceRecognitionIcon from '@mui/icons-material/Face';
 import VerificationIcon from '@mui/icons-material/Verified';
 import SecurityIcon from '@mui/icons-material/Security';
+import WarningIcon from '@mui/icons-material/Warning';
 import { StatusWrapper } from "pages-sections/vendor-dashboard/styles";
 import PassportView from "../passport-view";
 import DocumentView from "../document-view";
@@ -50,6 +51,29 @@ const PassportPageView = ({ transactionId }) => {
   const [faceRecognition, setFaceRecognition] = useState(null);
   const [criminalRecord, setCriminalRecord] = useState(null);
   const [error, setError] = useState(null);
+
+  // Helper function to check if document is expired
+  const isDocumentExpired = (expiryDateStr) => {
+    if (!expiryDateStr || expiryDateStr === 'N/A') return false;
+    
+    try {
+      // Parse the formatted date (dd-MMM-yyyy)
+      const [day, month, year] = expiryDateStr.split('-');
+      const monthMap = {
+        'Jan': 0, 'Feb': 1, 'Mar': 2, 'Apr': 3, 'May': 4, 'Jun': 5,
+        'Jul': 6, 'Aug': 7, 'Sep': 8, 'Oct': 9, 'Nov': 10, 'Dec': 11
+      };
+      
+      const expiryDate = new Date(parseInt(year), monthMap[month], parseInt(day));
+      const today = new Date();
+      today.setHours(0, 0, 0, 0); // Reset time for accurate comparison
+      
+      return expiryDate < today;
+    } catch (error) {
+      console.warn('Error parsing expiry date:', error);
+      return false;
+    }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -183,6 +207,12 @@ const PassportPageView = ({ transactionId }) => {
 
           {/* Tab 1: Passport Information */}
           <TabPanel value={activeTab} index={0}>
+            {/* Global warning banner if expired */}
+            {isDocumentExpired(passport?.expiryDate) && (
+              <Alert severity="error" icon={<WarningIcon />} sx={{ mb: 3 }}>
+                This document is expired – we accept it for demo purposes only.
+              </Alert>
+            )}
             <Grid container spacing={3}>
               <Grid item xs={12} sm={4}>
                 <Box sx={{
