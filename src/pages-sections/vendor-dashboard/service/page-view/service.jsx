@@ -18,6 +18,7 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import WarningIcon from "@mui/icons-material/Warning";
 import { v4 as uuidv4 } from "uuid";
 import QRCode from "qrcode";
+import Image from "next/image";
 
 const ServicePageView = () => {
   const [sessionId, setSessionId] = useState(null);
@@ -25,6 +26,7 @@ const ServicePageView = () => {
   const [passportData, setPassportData] = useState(null);
   const [isWaitingForVerification, setIsWaitingForVerification] =
     useState(false);
+  const [verificationFailed, setVerificationFailed] = useState(false);
   const theme = useTheme();
 
   // Helper function to check if document is expired
@@ -69,6 +71,12 @@ const ServicePageView = () => {
             const data = await response.json();
             if (data.verified && data.passportData) {
               setPassportData(data.passportData);
+              setIsWaitingForVerification(false);
+              setQrCodeUrl(null);
+              clearInterval(interval);
+            } else if (data.verified === false) {
+              // Verification failed
+              setVerificationFailed(true);
               setIsWaitingForVerification(false);
               setQrCodeUrl(null);
               clearInterval(interval);
@@ -125,6 +133,7 @@ const ServicePageView = () => {
     setQrCodeUrl(null);
     setPassportData(null);
     setIsWaitingForVerification(false);
+    setVerificationFailed(false);
   };
 
   return (
@@ -169,6 +178,45 @@ const ServicePageView = () => {
               </CardContent>
             </Card>
           </Grid>
+        ) : verificationFailed ? (
+          /* Verification Failed Screen */
+          <Grid item xs={12} md={8} mx="auto">
+            <Card elevation={3} sx={{ borderRadius: 3 }}>
+              <CardContent sx={{ textAlign: "center", py: 6 }}>
+                <WarningIcon
+                  sx={{ fontSize: 80, color: "error.main", mb: 2 }}
+                />
+                <Typography
+                  variant="h4"
+                  gutterBottom
+                  sx={{ fontWeight: "bold", mb: 2 }}
+                >
+                  Verification Failed
+                </Typography>
+                <Typography
+                  variant="body1"
+                  color="text.secondary"
+                  sx={{ mb: 4, maxWidth: 400, mx: "auto" }}
+                >
+                  The verification process was unsuccessful. Please try again.
+                </Typography>
+                <Button
+                  variant="contained"
+                  size="large"
+                  onClick={resetService}
+                  sx={{
+                    px: 6,
+                    py: 2,
+                    fontSize: "1.1rem",
+                    borderRadius: 2,
+                    boxShadow: theme.shadows[4],
+                  }}
+                >
+                  Try Again
+                </Button>
+              </CardContent>
+            </Card>
+          </Grid>
         ) : !passportData ? (
           /* QR Code Display */
           <Grid item xs={12} md={6} mx="auto">
@@ -201,9 +249,11 @@ const ServicePageView = () => {
                   }}
                 >
                   {qrCodeUrl && (
-                    <img
+                    <Image
                       src={qrCodeUrl}
                       alt="SUDAPASS QR Code"
+                      width={280}
+                      height={280}
                       style={{
                         borderRadius: "8px",
                         border: `2px solid ${theme.palette.primary.main}20`,

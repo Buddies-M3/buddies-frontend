@@ -18,7 +18,7 @@ function toFourDigitYear(yy, pivot = 69) {
   return yy >= pivot ? 1900 + yy : 2000 + yy;
 }
 
-export function parsePassportDate(dateString, formatStr, opts = {}) {
+function parsePassportDate(dateString, formatStr, opts = {}) {
   if (!dateString) return null;
 
   // Allow overriding the pivot or forcing 2000-century (useful for expiry)
